@@ -1,5 +1,6 @@
+package main.java;
+
 import java.util.Scanner;
-import org.junit.jupiter.api.Test;
 
 public class Customer {
     String customerName;

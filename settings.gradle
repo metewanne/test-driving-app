@@ -1,1 +1,3 @@
 rootProject.name = 'test-driving-app'
+include 'main'
+
