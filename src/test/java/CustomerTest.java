@@ -1,27 +1,26 @@
 import org.junit.jupiter.api.Test;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CustomerTest {
 
-    Customer customer1 = new Customer();
+    Customer customer = new Customer();
 
     @Test
-    public void testEmptyInput() throws Exception {
+    public void testEmptyInput() {
 
-        assertThrows(Exception.class, () -> customer1.inputCustomerName(""));
-
-    }
-    @Test
-    public void testStuff() throws Exception {
-
-        String name = customer1.inputCustomerName("Hi");
-
-        assertThat(name).isEqualTo("Hi");
-
+        assertThrows(Exception.class, () -> customer.inputCustomerName(""));
 
     }
 
+
+    @Test
+    public void testInputIsInt() {
+
+        assertThrows(Exception.class, () -> customer.inputCustomerName("1"));
+
+    }
 
 
 }
