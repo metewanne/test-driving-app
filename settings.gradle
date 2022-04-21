@@ -1,3 +1,6 @@
 rootProject.name = 'test-driving-app'
 include 'main'
+include 'main'
+include 'main'
+include 'src'
 
