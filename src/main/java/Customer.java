@@ -4,10 +4,9 @@ import java.util.regex.Pattern;
 public class Customer {
 
 
-    public static String inputCustomerName(Scanner scanName) throws Exception {
+    public static String inputCustomerName(String customerName) throws Exception {
 
-        String name = scanName.nextLine();
-        System.out.print(name);
+        String name = customerName;
 
         if (name == null || name.trim().equals("")) {
             throw new Exception("Empty input");
@@ -33,13 +32,10 @@ public class Customer {
         Scanner scanName = new Scanner(System.in);
         System.out.print("Enter first name");
         String firstName = scanName.nextLine();
-
-        System.out.print(firstName);
-        inputCustomerName(scanName);
+        inputCustomerName(firstName);
         System.out.print("Enter surname");
         String surname = scanName.next();
-
-
+        inputCustomerName(surname);
 
     }
 
