@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="CustomerTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-04-21T15:55:59" hostname="UKC02ZLUJYMD6M" time="0.037">
+<testsuite name="CustomerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-04-25T12:47:04" hostname="UKC02ZKM9HMD6M" time="0.018">
   <properties/>
-  <testcase name="testEmptyInput()" classname="CustomerTest" time="0.033"/>
-  <testcase name="testInputIsInt()" classname="CustomerTest" time="0.002"/>
-  <system-out><![CDATA[]]></system-out>
+  <testcase name="testEmptyInput()" classname="CustomerTest" time="0.018"/>
+  <system-out><![CDATA[Enter first name]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
