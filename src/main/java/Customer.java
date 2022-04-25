@@ -4,9 +4,10 @@ import java.util.regex.Pattern;
 public class Customer {
 
 
-    public static Scanner inputCustomerName(Scanner scanName) throws Exception {
+    public static String inputCustomerName(Scanner scanName) throws Exception {
 
         String name = scanName.nextLine();
+        System.out.print(name);
 
         if (name == null || name.trim().equals("")) {
             throw new Exception("Empty input");
@@ -18,7 +19,7 @@ public class Customer {
             }
         }
 
-        return scanName;
+        return name;
     }
 
     public static boolean patternMatches(String emailAddress, String regexPattern) {
@@ -33,11 +34,13 @@ public class Customer {
         System.out.print("Enter first name");
         String firstName = scanName.nextLine();
 
+        System.out.print(firstName);
+        inputCustomerName(scanName);
         System.out.print("Enter surname");
         String surname = scanName.next();
 
 
-        inputCustomerName(scanName);
+
     }
 
 }
