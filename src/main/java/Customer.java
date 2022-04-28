@@ -23,7 +23,13 @@ public class Customer {
         return name;
     }
 
-    public static boolean patternMatches(String emailAddress, String regexPattern) {
+    public static boolean patternMatches(String emailAddress, String regexPattern) throws Exception {
+        String email = emailAddress;
+
+        if (!email.matches(regexPattern)) {
+            throw new Exception("Invalid email");
+        }
+
         return Pattern.compile(regexPattern)
                 .matcher(emailAddress)
                 .matches();
@@ -31,17 +37,26 @@ public class Customer {
 
     public static void main(String[] args) throws Exception {
 
-        Scanner scanName = new Scanner(System.in);
+        Scanner customerInput = new Scanner(System.in);
         System.out.print("Enter first name");
-        String firstName = scanName.nextLine();
+        String firstName = customerInput.nextLine();
         inputCustomerName(firstName);
         System.out.print("Enter surname");
-        String surname = scanName.next();
+        String surname = customerInput.next();
         inputCustomerName(surname);
+
+        System.out.print("Enter email address");
+        String email = customerInput.next();
+        patternMatches(email, "^(.+)@(\\S+)$");
+        System.out.print("Please select a brand");
+
+        String brand = customerInput.nextLine();
+        System.out.print(brand);
+
 
     }
 
-    public List<Brand> showBrandList() {
+    public static List<Brand> showBrandList() {
         List<Brand> carBrands = new ArrayList<>();
         carBrands.add(new Brand("BMW"));
         carBrands.add(new Brand("Tesla"));

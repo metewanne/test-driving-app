@@ -22,7 +22,7 @@ public class CustomerTest {
     }
 
     @Test
-    public void testUsingSimpleRegex() {
+    public void testUsingSimpleRegex() throws Exception {
         String emailAddress = "username@domain.com";
         String regexPattern = "^(.+)@(\\S+)$";
         Customer EmailValidation = null;
