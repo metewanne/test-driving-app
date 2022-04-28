@@ -38,18 +38,18 @@ public class Customer {
     public static void main(String[] args) throws Exception {
 
         Scanner customerInput = new Scanner(System.in);
-        System.out.print("Enter first name");
+        System.out.println("Enter first name");
         String firstName = customerInput.nextLine();
         inputCustomerName(firstName);
-        System.out.print("Enter surname");
+        System.out.println("Enter surname");
         String surname = customerInput.next();
         inputCustomerName(surname);
 
-        System.out.print("Enter email address");
+        System.out.println("Enter email address");
         String email = customerInput.next();
         patternMatches(email, "^(.+)@(\\S+)$");
-        System.out.print("Please select a brand");
-
+        System.out.println("Please select a brand");
+        System.out.println(showBrandList());
         String brand = customerInput.nextLine();
         System.out.print(brand);
 
