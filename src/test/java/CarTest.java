@@ -9,6 +9,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class CarTest {
 
     Customer customer = new Customer();
+    Brand brand = new Brand();
+
     //@Test
     //Check that car class exists
     @Test
@@ -23,6 +25,12 @@ public class CarTest {
     @Test
     public void testEmptyList() throws Exception {
         assertThat(customer.showBrandList().size()).isGreaterThan(0);
+    }
+
+    @Test
+    public void testBrandList() throws Exception {
+        brand.setBrandName("dhsuihd");
+        assertThat(customer.showBrandList().contains(brand.getBrandName()));
     }
 
 }

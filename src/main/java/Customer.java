@@ -5,7 +5,6 @@ import java.util.regex.Pattern;
 
 public class Customer {
 
-
     public static String inputCustomerName(String customerName) throws Exception {
 
         String name = customerName;
@@ -29,34 +28,44 @@ public class Customer {
         if (!email.matches(regexPattern)) {
             throw new Exception("Invalid email");
         }
-
         return Pattern.compile(regexPattern)
                 .matcher(emailAddress)
                 .matches();
+    }
+
+    public static String brandMatch(Brand brand, List brandList) throws Exception {
+        Brand chosenBrand = brand;
+        List<String> listOfBrands = brandList;
+
+        if (!listOfBrands.contains(chosenBrand.getBrandName())) {
+            throw new Exception("Brand not in list");
+        }
+        return chosenBrand.getBrandName();
     }
 
     public static void main(String[] args) throws Exception {
 
         Scanner customerInput = new Scanner(System.in);
         System.out.println("Enter first name");
-        String firstName = customerInput.nextLine();
+        String firstName = customerInput.next();
         inputCustomerName(firstName);
         System.out.println("Enter surname");
         String surname = customerInput.next();
         inputCustomerName(surname);
-
         System.out.println("Enter email address");
         String email = customerInput.next();
         patternMatches(email, "^(.+)@(\\S+)$");
         System.out.println("Please select a brand");
         System.out.println(showBrandList());
-        String brand = customerInput.nextLine();
-        System.out.print(brand);
-
+        Brand brand1 = new Brand();
+        String brand = customerInput.next();
+        brand1.setBrandName(brand);
+        brandMatch(brand1, showBrandList());
+        //System.out.println(brand1.getBrandName());
 
     }
 
-    public static List<Brand> showBrandList() {
+    public static List<Brand> brandList() {
         List<Brand> carBrands = new ArrayList<>();
         carBrands.add(new Brand("BMW"));
         carBrands.add(new Brand("Tesla"));
@@ -64,6 +73,14 @@ public class Customer {
         carBrands.add(new Brand("Rolls Royce"));
         carBrands.add(new Brand("Ferrari"));
         return carBrands;
+    }
+
+    public static List<String> showBrandList(){
+        List<String> brand = new ArrayList<>();
+        for (int i=0; i<brandList().size(); i++){
+            brand.add(brandList().get(i).getBrandName());
+        }
+        return brand;
     }
 
 }
