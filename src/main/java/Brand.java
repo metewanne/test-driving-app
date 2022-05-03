@@ -1,6 +1,7 @@
 public class Brand {
 
     private String brandName;
+    private Car carName;
 
     public Brand() {
     }
@@ -17,4 +18,11 @@ public class Brand {
         this.brandName = brandName;
     }
 
+    public Car getCarName() {
+        return carName;
+    }
+
+    public void setCarName(Car carName) {
+        this.carName = carName;
+    }
 }

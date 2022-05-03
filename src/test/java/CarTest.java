@@ -11,6 +11,7 @@ public class CarTest {
     Customer customer = new Customer();
     Brand brand = new Brand();
 
+
     //@Test
     //Check that car class exists
     @Test
@@ -29,7 +30,6 @@ public class CarTest {
 
     @Test
     public void testBrandList() throws Exception {
-        brand.setBrandName("bmw");
         assertThat(customer.brandMatch(brand, customer.showBrandList()));
     }
 

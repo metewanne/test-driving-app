@@ -54,19 +54,25 @@ public class Customer {
         System.out.println("Enter first name");
         String firstName = customerInput.next();
         inputCustomerName(firstName);
+
         System.out.println("Enter surname");
         String surname = customerInput.next();
         inputCustomerName(surname);
+
         System.out.println("Enter email address");
         String email = customerInput.next();
         patternMatches(email, "^(.+)@(\\S+)$");
+
         System.out.println("Please select a brand");
         System.out.println(showBrandList());
         Brand brand1 = new Brand();
         String brand = customerInput.next();
         brand1.setBrandName(brand);
-        brandMatch(brand1, showBrandList());
-        System.out.println(brand1.getBrandName());
+        String brandName = brandMatch(brand1, showBrandList());
+
+        showCarModels(brandName);
+
+
 
     }
 
@@ -75,7 +81,7 @@ public class Customer {
         carBrands.add(new Brand("BMW"));
         carBrands.add(new Brand("Tesla"));
         carBrands.add(new Brand("Mercedes"));
-        carBrands.add(new Brand("Rolls Royce"));
+        carBrands.add(new Brand("Bentley"));
         carBrands.add(new Brand("Ferrari"));
         return carBrands;
     }
@@ -87,5 +93,35 @@ public class Customer {
         }
         return brand;
     }
+
+    public static void showCarModels(String brandMatch) {
+        switch(brandMatch) {
+            case "bmw":
+                List<Car> bmwModels = new ArrayList<>();
+                bmwModels.add(new Car("1"));
+                bmwModels.add(new Car("2"));
+                bmwModels.add(new Car("3"));
+                System.out.println(bmwModels.toString());
+
+            case "Tesla":
+                List<Car> teslaModels = new ArrayList<>();
+                teslaModels.add(new Car("a"));
+                teslaModels.add(new Car("b"));
+                teslaModels.add(new Car("c"));
+                System.out.println(teslaModels.toString());
+
+            default:
+                System.out.println("No car selected");
+        }
+
+
+
+
+    }
+
+
+
+
+
 
 }

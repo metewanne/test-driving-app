@@ -6,12 +6,18 @@ public class Car {
         this.carModel = carModel;
     }
 
+    public Car() {
+    }
+
     public String getCarModel() {
         return carModel;
     }
 
     public static void main(String[] args){
 
+    }
+    public String toString() {
+        return getCarModel();
     }
 
 }
