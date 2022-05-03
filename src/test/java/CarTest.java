@@ -29,8 +29,13 @@ public class CarTest {
 
     @Test
     public void testBrandList() throws Exception {
-        brand.setBrandName("dhsuihd");
-        assertThat(customer.showBrandList().contains(brand.getBrandName()));
+        brand.setBrandName("bmw");
+        assertThat(customer.brandMatch(brand, customer.showBrandList()));
+    }
+
+    @Test
+    public void testCarModel() throws Exception {
+
     }
 
 }

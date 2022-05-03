@@ -37,7 +37,12 @@ public class Customer {
         Brand chosenBrand = brand;
         List<String> listOfBrands = brandList;
 
-        if (!listOfBrands.contains(chosenBrand.getBrandName())) {
+        List<String> lowerCaseBrands = new ArrayList<>();
+        for(int i = 0; i < listOfBrands.size(); i++){
+            lowerCaseBrands.add(listOfBrands.get(i).toLowerCase());
+        }
+
+        if (!lowerCaseBrands.contains(chosenBrand.getBrandName().toLowerCase())) {
             throw new Exception("Brand not in list");
         }
         return chosenBrand.getBrandName();
@@ -61,7 +66,7 @@ public class Customer {
         String brand = customerInput.next();
         brand1.setBrandName(brand);
         brandMatch(brand1, showBrandList());
-        //System.out.println(brand1.getBrandName());
+        System.out.println(brand1.getBrandName());
 
     }
 
