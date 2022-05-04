@@ -5,6 +5,33 @@ import java.util.regex.Pattern;
 
 public class Customer {
 
+    public static void main(String[] args) throws Exception {
+
+        Scanner customerInput = new Scanner(System.in);
+        System.out.println("Enter first name");
+        String firstName = customerInput.next();
+        inputCustomerName(firstName);
+
+        System.out.println("Enter surname");
+        String surname = customerInput.next();
+        inputCustomerName(surname);
+
+        System.out.println("Enter email address");
+        String email = customerInput.next();
+        patternMatches(email, "^(.+)@(\\S+)$");
+
+        System.out.println("Please select a brand");
+        System.out.println(showBrandList());
+        Brand brand1 = new Brand();
+        String brand = customerInput.next();
+        brand1.setBrandName(brand);
+        String brandName = brandMatch(brand1, showBrandList());
+
+        showCarModels(brandName);
+
+    }
+
+
     public static String inputCustomerName(String customerName) throws Exception {
 
         String name = customerName;
@@ -48,34 +75,6 @@ public class Customer {
         return chosenBrand.getBrandName();
     }
 
-    public static void main(String[] args) throws Exception {
-
-        Scanner customerInput = new Scanner(System.in);
-        System.out.println("Enter first name");
-        String firstName = customerInput.next();
-        inputCustomerName(firstName);
-
-        System.out.println("Enter surname");
-        String surname = customerInput.next();
-        inputCustomerName(surname);
-
-        System.out.println("Enter email address");
-        String email = customerInput.next();
-        patternMatches(email, "^(.+)@(\\S+)$");
-
-        System.out.println("Please select a brand");
-        System.out.println(showBrandList());
-        Brand brand1 = new Brand();
-        String brand = customerInput.next();
-        brand1.setBrandName(brand);
-        String brandName = brandMatch(brand1, showBrandList());
-
-        showCarModels(brandName);
-
-
-
-    }
-
     public static List<Brand> brandList() {
         List<Brand> carBrands = new ArrayList<>();
         carBrands.add(new Brand("BMW"));
@@ -86,6 +85,8 @@ public class Customer {
         return carBrands;
     }
 
+
+
     public static List<String> showBrandList(){
         List<String> brand = new ArrayList<>();
         for (int i=0; i<brandList().size(); i++){
@@ -95,31 +96,79 @@ public class Customer {
     }
 
     public static void showCarModels(String brandMatch) {
-        switch(brandMatch) {
+        switch (brandMatch) {
             case "bmw":
-                List<Car> bmwModels = new ArrayList<>();
-                bmwModels.add(new Car("1"));
-                bmwModels.add(new Car("2"));
-                bmwModels.add(new Car("3"));
+                List<CarModel> bmwModels = new ArrayList<>();
+                bmwModels.add(new CarModel("1"));
+                bmwModels.add(new CarModel("2"));
+                bmwModels.add(new CarModel("3"));
                 System.out.println(bmwModels.toString());
+                break;
 
             case "Tesla":
-                List<Car> teslaModels = new ArrayList<>();
-                teslaModels.add(new Car("a"));
-                teslaModels.add(new Car("b"));
-                teslaModels.add(new Car("c"));
+                List<CarModel> teslaModels = new ArrayList<>();
+                teslaModels.add(new CarModel("a"));
+                teslaModels.add(new CarModel("b"));
+                teslaModels.add(new CarModel("c"));
                 System.out.println(teslaModels.toString());
+                break;
 
             default:
                 System.out.println("No car selected");
         }
-
-
-
-
     }
 
+//    public static ArrayList<CarModel> showCarModels(String brandMatch) {
+//        switch(brandMatch) {
+//            case "BMW":
+//                ArrayList<CarModel> bmwModels = new ArrayList<>();
+//                bmwModels.add(new CarModel("1"));
+//                bmwModels.add(new CarModel("2"));
+//                bmwModels.add(new CarModel("3"));
+//                return bmwModels;
+//                break;
+//
+//            case "Tesla":
+//                ArrayList<CarModel> teslaModels = new ArrayList<>();
+//                teslaModels.add(new CarModel("a"));
+//                teslaModels.add(new CarModel("b"));
+//                teslaModels.add(new CarModel("c"));
+//                System.out.println(teslaModels.toString());
+//                return teslaModels;
+//                break;
+//
+//            default:
+//                System.out.println("No car selected");
+//        }
 
+
+
+//    public static void addBrandAndCar(){
+//
+//        ArrayList<CarModel> carModelList = new ArrayList<CarModel>();
+//
+//        carModelList.add(new CarModel("X-5"));
+//        carModelList.add(new CarModel("X-6"));
+//
+//        List<Brand> brandCar = new ArrayList<>();
+//        brandCar.add(new Brand("BMW", carModelList));
+//
+//        System.out.println(brandCar);
+//
+//    }
+
+//    public static void addBrandAndCar(String b, ArrayList<CarModel> addBrandAndCar){
+//
+//
+//        Brand brandWithCarModels = new Brand(brandName, carModels);
+//
+//
+//
+//        // main()
+//
+//        // Brand BMWWithModels = addBrandAndCar("BMW", bmwCarModelList);
+//        // System.out.println(BMWWithModels.printCarModels());
+//    }
 
 
 
