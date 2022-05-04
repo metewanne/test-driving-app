@@ -17,7 +17,7 @@ public class CarTest {
     @Test
     public void testClassExists() {
         try {
-            Class.forName("Car");
+            Class.forName("CarModel");
         } catch (ClassNotFoundException e) {
             Assert.fail("Should have class called Car");
         }
@@ -30,6 +30,7 @@ public class CarTest {
 
     @Test
     public void testBrandList() throws Exception {
+        brand.setBrandName("BMW");
         assertThat(customer.brandMatch(brand, customer.showBrandList()));
     }
 
