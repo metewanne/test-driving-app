@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
@@ -21,6 +22,7 @@ public class Customer {
         patternMatches(email, "^(.+)@(\\S+)$");
 
         System.out.println("Please select a brand");
+
         System.out.println(showBrandList());
         Brand brand1 = new Brand();
         String brand = customerInput.next();
@@ -28,6 +30,8 @@ public class Customer {
         String brandName = brandMatch(brand1, showBrandList());
 
         showCarModels(brandName);
+        Map <String, List <CarModel>> brandMap = Map.of("bmw", List.of(new CarModel("X5"), new CarModel("X6")));
+
 
     }
 
@@ -72,7 +76,7 @@ public class Customer {
         if (!lowerCaseBrands.contains(chosenBrand.getBrandName().toLowerCase())) {
             throw new Exception("Brand not in list");
         }
-        return chosenBrand.getBrandName();
+        return chosenBrand.getBrandName().toLowerCase();
     }
 
     public static List<Brand> brandList() {
@@ -88,15 +92,16 @@ public class Customer {
 
 
     public static List<String> showBrandList(){
-        for (TempBrand brand : TempBrand.values()) {
-            System.out.println(brand);
-        }
-
-//        List<String> brand = new ArrayList<>();
-//        for (int i=0; i<brandList().size(); i++){
-//            brand.add(brandList().get(i).getBrandName());
+//        for (TempBrand brand : TempBrand.values()) {
+//            System.out.println(brand);
 //        }
-//        return brand;
+//        return TempBrand.values();
+
+        List<String> brand = new ArrayList<>();
+        for (int i=0; i<brandList().size(); i++){
+            brand.add(brandList().get(i).getBrandName());
+        }
+        return brand;
     }
 
     public static void showCarModels(String brandMatch) {
@@ -109,7 +114,7 @@ public class Customer {
                 System.out.println(bmwModels.toString());
                 break;
 
-            case "Tesla":
+            case "tesla":
                 List<CarModel> teslaModels = new ArrayList<>();
                 teslaModels.add(new CarModel("a"));
                 teslaModels.add(new CarModel("b"));
