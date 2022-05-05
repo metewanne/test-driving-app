@@ -88,11 +88,15 @@ public class Customer {
 
 
     public static List<String> showBrandList(){
-        List<String> brand = new ArrayList<>();
-        for (int i=0; i<brandList().size(); i++){
-            brand.add(brandList().get(i).getBrandName());
+        for (TempBrand brand : TempBrand.values()) {
+            System.out.println(brand);
         }
-        return brand;
+
+//        List<String> brand = new ArrayList<>();
+//        for (int i=0; i<brandList().size(); i++){
+//            brand.add(brandList().get(i).getBrandName());
+//        }
+//        return brand;
     }
 
     public static void showCarModels(String brandMatch) {
