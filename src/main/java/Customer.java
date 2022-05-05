@@ -107,14 +107,17 @@ public class Customer {
 
     public static void showCarModels(String brandMatch, Map brandMap) throws Exception {
 
+        // if statement broken
+        List<Object> brandList = new ArrayList<>();
         for (Object key : brandMap.keySet()) {
             if (brandMatch == brandMap.get(key)) {
-                System.out.print(brandMap.values());
-            } else {
-                throw new Exception("No models available");
+                for (int i = 0; i < brandMap.values().size(); i++){
+                    brandList.add(brandMap.get(i));
+                }
+                System.out.println(brandList);
+                }
             }
-
-
+            System.out.println(brandList);
         }
 
 
@@ -138,7 +141,7 @@ public class Customer {
 //            default:
 //                System.out.println("No car selected");
 //        }
-    }
+
 
 //    public static ArrayList<CarModel> showCarModels(String brandMatch) {
 //        switch(brandMatch) {
@@ -162,7 +165,6 @@ public class Customer {
 //            default:
 //                System.out.println("No car selected");
 //        }
-
 
 
 //    public static void addBrandAndCar(){
@@ -191,7 +193,6 @@ public class Customer {
 //        // Brand BMWWithModels = addBrandAndCar("BMW", bmwCarModelList);
 //        // System.out.println(BMWWithModels.printCarModels());
 //    }
-
 
 
 
