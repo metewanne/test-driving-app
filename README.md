@@ -21,4 +21,3 @@ Users will want to look for a car of interest, (can look up by what the user inp
 Once the user confirms they want to book the specific car, I want it to be removed from the availability list and added to a confirmed bookings list. Ask the user if they would like to book another car too?
 
 Now expand this, as a user I want to list the cars from highest to lowest in regards to price or mileage as a search option, this would be optional to use. I could either book a specific car because I'm certain, or use this search to give me good options.
-![image](https://user-images.githubusercontent.com/33934181/166900380-74f9ca2d-9ef7-4694-8f66-086dafc002fa.png)
