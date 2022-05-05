@@ -6,6 +6,10 @@ import java.util.regex.Pattern;
 
 public class Customer {
 
+    static Map <String, List <CarModel>> brandMap = Map.of("bmw", List.of(new CarModel("X5"), new CarModel("X6")), "tesla", List.of(new CarModel("S"), new CarModel("3")));
+
+
+
     public static void main(String[] args) throws Exception {
 
         Scanner customerInput = new Scanner(System.in);
@@ -24,13 +28,15 @@ public class Customer {
         System.out.println("Please select a brand");
 
         System.out.println(showBrandList());
+
         Brand brand1 = new Brand();
         String brand = customerInput.next();
         brand1.setBrandName(brand);
         String brandName = brandMatch(brand1, showBrandList());
 
-        showCarModels(brandName);
-        Map <String, List <CarModel>> brandMap = Map.of("bmw", List.of(new CarModel("X5"), new CarModel("X6")));
+
+
+        showCarModels(brandName, brandMap);
 
 
     }
@@ -90,12 +96,7 @@ public class Customer {
     }
 
 
-
     public static List<String> showBrandList(){
-//        for (TempBrand brand : TempBrand.values()) {
-//            System.out.println(brand);
-//        }
-//        return TempBrand.values();
 
         List<String> brand = new ArrayList<>();
         for (int i=0; i<brandList().size(); i++){
@@ -104,27 +105,39 @@ public class Customer {
         return brand;
     }
 
-    public static void showCarModels(String brandMatch) {
-        switch (brandMatch) {
-            case "bmw":
-                List<CarModel> bmwModels = new ArrayList<>();
-                bmwModels.add(new CarModel("1"));
-                bmwModels.add(new CarModel("2"));
-                bmwModels.add(new CarModel("3"));
-                System.out.println(bmwModels.toString());
-                break;
+    public static void showCarModels(String brandMatch, Map brandMap) throws Exception {
 
-            case "tesla":
-                List<CarModel> teslaModels = new ArrayList<>();
-                teslaModels.add(new CarModel("a"));
-                teslaModels.add(new CarModel("b"));
-                teslaModels.add(new CarModel("c"));
-                System.out.println(teslaModels.toString());
-                break;
+        for (Object key : brandMap.keySet()) {
+            if (brandMatch == brandMap.get(key)) {
+                System.out.print(brandMap.values());
+            } else {
+                throw new Exception("No models available");
+            }
 
-            default:
-                System.out.println("No car selected");
+
         }
+
+
+//        switch (brandMatch) {
+//            case "bmw":
+//                List<CarModel> bmwModels = new ArrayList<>();
+//                bmwModels.add(new CarModel("1"));
+//                bmwModels.add(new CarModel("2"));
+//                bmwModels.add(new CarModel("3"));
+//                System.out.println(bmwModels.toString());
+//                break;
+//
+//            case "tesla":
+//                List<CarModel> teslaModels = new ArrayList<>();
+//                teslaModels.add(new CarModel("a"));
+//                teslaModels.add(new CarModel("b"));
+//                teslaModels.add(new CarModel("c"));
+//                System.out.println(teslaModels.toString());
+//                break;
+//
+//            default:
+//                System.out.println("No car selected");
+//        }
     }
 
 //    public static ArrayList<CarModel> showCarModels(String brandMatch) {
