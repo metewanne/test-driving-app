@@ -1,7 +1,35 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class Customer {
+
+    public static void main(String[] args) throws Exception {
+
+        Scanner customerInput = new Scanner(System.in);
+        System.out.println("Enter first name");
+        String firstName = customerInput.next();
+        inputCustomerName(firstName);
+
+        System.out.println("Enter surname");
+        String surname = customerInput.next();
+        inputCustomerName(surname);
+
+        System.out.println("Enter email address");
+        String email = customerInput.next();
+        patternMatches(email, "^(.+)@(\\S+)$");
+
+        System.out.println("Please select a brand");
+        System.out.println(showBrandList());
+        Brand brand1 = new Brand();
+        String brand = customerInput.next();
+        brand1.setBrandName(brand);
+        String brandName = brandMatch(brand1, showBrandList());
+
+        showCarModels(brandName);
+
+    }
 
 
     public static String inputCustomerName(String customerName) throws Exception {
@@ -21,22 +49,73 @@ public class Customer {
         return name;
     }
 
-    public static boolean patternMatches(String emailAddress, String regexPattern) {
+    public static boolean patternMatches(String emailAddress, String regexPattern) throws Exception {
+        String email = emailAddress;
+
+        if (!email.matches(regexPattern)) {
+            throw new Exception("Invalid email");
+        }
         return Pattern.compile(regexPattern)
                 .matcher(emailAddress)
                 .matches();
     }
 
-    public static void main(String[] args) throws Exception {
+    public static String brandMatch(Brand brand, List brandList) throws Exception {
+        Brand chosenBrand = brand;
+        List<String> listOfBrands = brandList;
 
-        Scanner scanName = new Scanner(System.in);
-        System.out.print("Enter first name");
-        String firstName = scanName.nextLine();
-        inputCustomerName(firstName);
-        System.out.print("Enter surname");
-        String surname = scanName.next();
-        inputCustomerName(surname);
+        List<String> lowerCaseBrands = new ArrayList<>();
+        for(int i = 0; i < listOfBrands.size(); i++){
+            lowerCaseBrands.add(listOfBrands.get(i).toLowerCase());
+        }
 
+        if (!lowerCaseBrands.contains(chosenBrand.getBrandName().toLowerCase())) {
+            throw new Exception("Brand not in list");
+        }
+        return chosenBrand.getBrandName();
+    }
+
+    public static List<Brand> brandList() {
+        List<Brand> carBrands = new ArrayList<>();
+        carBrands.add(new Brand("BMW"));
+        carBrands.add(new Brand("Tesla"));
+        carBrands.add(new Brand("Mercedes"));
+        carBrands.add(new Brand("Bentley"));
+        carBrands.add(new Brand("Ferrari"));
+        return carBrands;
+    }
+
+
+
+    public static List<String> showBrandList(){
+        List<String> brand = new ArrayList<>();
+        for (int i=0; i<brandList().size(); i++){
+            brand.add(brandList().get(i).getBrandName());
+        }
+        return brand;
+    }
+
+    public static void showCarModels(String brandMatch) {
+        switch (brandMatch) {
+            case "bmw":
+                List<CarModel> bmwModels = new ArrayList<>();
+                bmwModels.add(new CarModel("1"));
+                bmwModels.add(new CarModel("2"));
+                bmwModels.add(new CarModel("3"));
+                System.out.println(bmwModels.toString());
+                break;
+
+            case "Tesla":
+                List<CarModel> teslaModels = new ArrayList<>();
+                teslaModels.add(new CarModel("a"));
+                teslaModels.add(new CarModel("b"));
+                teslaModels.add(new CarModel("c"));
+                System.out.println(teslaModels.toString());
+                break;
+
+            default:
+                System.out.println("No car selected");
+        }
     }
 
 }
