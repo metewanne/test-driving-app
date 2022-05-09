@@ -21,4 +21,8 @@ public class CarModel {
         return getCarModel();
     }
 
+    public void setCarModel(String carModelName) {
+        this.carModelName = carModelName;
+    }
+
 }

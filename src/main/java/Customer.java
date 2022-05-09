@@ -34,8 +34,17 @@ public class Customer {
         brand1.setBrandName(brand);
         String brandName = brandMatch(brand1, showBrandList());
 
+        System.out.println(showCarModels(brandName, brandMap));
 
-        showCarModels(brandName, brandMap);
+
+        System.out.println("Please select car model");
+        CarModel model = new CarModel();
+        String modelChoice = customerInput.next();
+        model.setCarModel(modelChoice);
+
+
+
+
 
 
     }
@@ -104,98 +113,18 @@ public class Customer {
         return brand;
     }
 
-    public static void showCarModels(String brandMatch, Map<String, List<CarModel>> brandMap) throws Exception {
-
-        // if statement broken
-        //List<Object> brandList = new ArrayList<>();
-
-//        for (Map.Entry<Object, List> entry : brandMap.entrySet()) {
-//            System.out.println(entry.getKey() + “:” + entry.getValue());
-//        }
-
-                System.out.println(brandMap.get(brandMatch));
-//                for (Object value : brandMap.values()) {
-//                    System.out.println(value);
-//                }
-
-            //System.out.println(brandList);
-
-
+    public static List showCarModels(String brandMatch, Map<String, List<CarModel>> brandMap) throws Exception {
+        if (brandMap.get(brandMatch).isEmpty()) {
+            throw new Exception("no car model available");
+        } else {
+            return brandMap.get(brandMatch);
+        }
 
     }
 
-//        switch (brandMatch) {
-//            case "bmw":
-//                List<CarModel> bmwModels = new ArrayList<>();
-//                bmwModels.add(new CarModel("1"));
-//                bmwModels.add(new CarModel("2"));
-//                bmwModels.add(new CarModel("3"));
-//                System.out.println(bmwModels.toString());
-//                break;
-//
-//            case "tesla":
-//                List<CarModel> teslaModels = new ArrayList<>();
-//                teslaModels.add(new CarModel("a"));
-//                teslaModels.add(new CarModel("b"));
-//                teslaModels.add(new CarModel("c"));
-//                System.out.println(teslaModels.toString());
-//                break;
-//
-//            default:
-//                System.out.println("No car selected");
-//        }
 
 
-//    public static ArrayList<CarModel> showCarModels(String brandMatch) {
-//        switch(brandMatch) {
-//            case "BMW":
-//                ArrayList<CarModel> bmwModels = new ArrayList<>();
-//                bmwModels.add(new CarModel("1"));
-//                bmwModels.add(new CarModel("2"));
-//                bmwModels.add(new CarModel("3"));
-//                return bmwModels;
-//                break;
-//
-//            case "Tesla":
-//                ArrayList<CarModel> teslaModels = new ArrayList<>();
-//                teslaModels.add(new CarModel("a"));
-//                teslaModels.add(new CarModel("b"));
-//                teslaModels.add(new CarModel("c"));
-//                System.out.println(teslaModels.toString());
-//                return teslaModels;
-//                break;
-//
-//            default:
-//                System.out.println("No car selected");
-//        }
 
-
-//    public static void addBrandAndCar(){
-//
-//        ArrayList<CarModel> carModelList = new ArrayList<CarModel>();
-//
-//        carModelList.add(new CarModel("X-5"));
-//        carModelList.add(new CarModel("X-6"));
-//
-//        List<Brand> brandCar = new ArrayList<>();
-//        brandCar.add(new Brand("BMW", carModelList));
-//
-//        System.out.println(brandCar);
-//
-//    }
-
-//    public static void addBrandAndCar(String b, ArrayList<CarModel> addBrandAndCar){
-//
-//
-//        Brand brandWithCarModels = new Brand(brandName, carModels);
-//
-//
-//
-//        // main()
-//
-//        // Brand BMWWithModels = addBrandAndCar("BMW", bmwCarModelList);
-//        // System.out.println(BMWWithModels.printCarModels());
-//    }
 
 
 
