@@ -3,6 +3,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.regex.Pattern;
+import java.util.stream.*;
 
 public class Customer {
 
@@ -103,7 +104,7 @@ public class Customer {
         return brand;
     }
 
-    public static void showCarModels(String brandMatch, Map brandMap) throws Exception {
+    public static void showCarModels(String brandMatch, Map<String, List<CarModel>> brandMap) throws Exception {
 
         // if statement broken
         //List<Object> brandList = new ArrayList<>();
@@ -112,15 +113,16 @@ public class Customer {
 //            System.out.println(entry.getKey() + “:” + entry.getValue());
 //        }
 
-        for (Object key : brandMap.keySet()) {
-            if (key.toString().equals(brandMatch)) {
-                for (Object value : brandMap.values()) {
-                    System.out.println(value);
-                }
-            }
-            //System.out.println(brandList);
-        }
+                System.out.println(brandMap.get(brandMatch));
+//                for (Object value : brandMap.values()) {
+//                    System.out.println(value);
+//                }
 
+            //System.out.println(brandList);
+
+
+
+    }
 
 //        switch (brandMatch) {
 //            case "bmw":
@@ -196,5 +198,5 @@ public class Customer {
 //    }
 
 
-    }
+
 }
