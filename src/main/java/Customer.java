@@ -6,8 +6,7 @@ import java.util.regex.Pattern;
 
 public class Customer {
 
-    static Map <String, List <CarModel>> brandMap = Map.of("bmw", List.of(new CarModel("X5"), new CarModel("X6")), "tesla", List.of(new CarModel("S"), new CarModel("3")));
-
+    static Map<String, List<CarModel>> brandMap = Map.of("bmw", List.of(new CarModel("X5"), new CarModel("X6")), "tesla", List.of(new CarModel("S"), new CarModel("3")));
 
 
     public static void main(String[] args) throws Exception {
@@ -33,7 +32,6 @@ public class Customer {
         String brand = customerInput.next();
         brand1.setBrandName(brand);
         String brandName = brandMatch(brand1, showBrandList());
-
 
 
         showCarModels(brandName, brandMap);
@@ -75,7 +73,7 @@ public class Customer {
         List<String> listOfBrands = brandList;
 
         List<String> lowerCaseBrands = new ArrayList<>();
-        for(int i = 0; i < listOfBrands.size(); i++){
+        for (int i = 0; i < listOfBrands.size(); i++) {
             lowerCaseBrands.add(listOfBrands.get(i).toLowerCase());
         }
 
@@ -96,10 +94,10 @@ public class Customer {
     }
 
 
-    public static List<String> showBrandList(){
+    public static List<String> showBrandList() {
 
         List<String> brand = new ArrayList<>();
-        for (int i=0; i<brandList().size(); i++){
+        for (int i = 0; i < brandList().size(); i++) {
             brand.add(brandList().get(i).getBrandName());
         }
         return brand;
@@ -108,16 +106,19 @@ public class Customer {
     public static void showCarModels(String brandMatch, Map brandMap) throws Exception {
 
         // if statement broken
-        List<Object> brandList = new ArrayList<>();
+        //List<Object> brandList = new ArrayList<>();
+
+//        for (Map.Entry<Object, List> entry : brandMap.entrySet()) {
+//            System.out.println(entry.getKey() + “:” + entry.getValue());
+//        }
+
         for (Object key : brandMap.keySet()) {
-            if (brandMatch == brandMap.get(key)) {
-                for (int i = 0; i < brandMap.values().size(); i++){
-                    brandList.add(brandMap.get(i));
-                }
-                System.out.println(brandList);
+            if (key.toString().equals(brandMatch)) {
+                for (Object value : brandMap.values()) {
+                    System.out.println(value);
                 }
             }
-            System.out.println(brandList);
+            //System.out.println(brandList);
         }
 
 
@@ -195,5 +196,5 @@ public class Customer {
 //    }
 
 
-
+    }
 }
