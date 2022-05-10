@@ -113,13 +113,12 @@ public class Customer {
         return brand;
     }
 
-    public static List showCarModels(String brandMatch, Map<String, List<CarModel>> brandMap) throws Exception {
+    public static List<CarModel> showCarModels(String brandMatch, Map<String, List<CarModel>> brandMap) throws Exception {
         if (brandMap.get(brandMatch).isEmpty()) {
             throw new Exception("no car model available");
         } else {
             return brandMap.get(brandMatch);
         }
-
     }
 
 
