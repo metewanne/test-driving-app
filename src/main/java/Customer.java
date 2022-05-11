@@ -7,7 +7,7 @@ import java.util.stream.*;
 
 public class Customer {
 
-    static Map<String, List<CarModel>> brandMap = Map.of("bmw", List.of(new CarModel("X5"), new CarModel("X6")), "tesla", List.of(new CarModel("S"), new CarModel("3")));
+    static Map<String, List<CarModel>> brandMap = Map.of("bmw", List.of(new CarModel("X5", 5000), new CarModel("X6", 1000)), "tesla", List.of(new CarModel("S", 2000), new CarModel("3", 100)));
 
 
     public static void main(String[] args) throws Exception {
@@ -40,11 +40,9 @@ public class Customer {
         System.out.println("Please select car model");
         CarModel model = new CarModel();
         String modelChoice = customerInput.next();
-        model.setCarModel(modelChoice);
-
-
-
-
+        model.setCarModelName(modelChoice);
+        System.out.println(showCarModels(model.getCarModelName(), brandMap));
+        //System.out.println(model.getMileage());
 
 
     }
@@ -113,6 +111,7 @@ public class Customer {
         return brand;
     }
 
+    // method takes brand user input and matches it to key in brandMap
     public static List<CarModel> showCarModels(String brandMatch, Map<String, List<CarModel>> brandMap) throws Exception {
         if (brandMap.get(brandMatch).isEmpty()) {
             throw new Exception("no car model available");

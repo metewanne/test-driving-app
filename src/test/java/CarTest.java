@@ -31,7 +31,8 @@ public class CarTest {
 
     @Test
     public void testEmptyList() throws Exception {
-        assertThat(customer.showBrandList().size()).isGreaterThan(0);
+        //assertThat(customer.showBrandList().size()).isGreaterThan(0);
+        assertThat(customer.brandMap.size()).isGreaterThan(0);
     }
 
     @Test
