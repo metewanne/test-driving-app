@@ -88,26 +88,6 @@ public class Customer {
         }
         return chosenBrand.getBrandName().toLowerCase();
     }
-//
-//    public static List<Brand> brandList() {
-//        List<Brand> carBrands = new ArrayList<>();
-//        carBrands.add(new Brand("BMW"));
-//        carBrands.add(new Brand("Tesla"));
-//        carBrands.add(new Brand("Mercedes"));
-//        carBrands.add(new Brand("Bentley"));
-//        carBrands.add(new Brand("Ferrari"));
-//        return carBrands;
-//    }
-
-
-//    public static List<String> showBrandList() {
-//
-//        List<String> brand = new ArrayList<>();
-//        for (int i = 0; i < brandList().size(); i++) {
-//            brand.add(brandList().get(i).getBrandName());
-//        }
-//        return brand;
-//    }
 
     // method takes brand user input and matches it to key in brandMap
     public static List<CarModel> showCarModels(String brandMatchOutput, Map<Brand, List<CarModel>> brandMap) throws Exception {
