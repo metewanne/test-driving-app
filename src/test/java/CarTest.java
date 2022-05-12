@@ -48,14 +48,14 @@ public class CarTest {
         modelList.add(new CarModel("i8"));
         Map<Brand, List<CarModel>> brandMap = Map.of(new Brand("bmw"), List.of(new CarModel("X5"), new CarModel("X6")), new Brand("tesla"), List.of(new CarModel("S"), new CarModel("3")));
 
-        assertThat(Customer.showCarModels("bmw", brandMap)).size().isGreaterThan(0);
+        assertThat(Customer.showCarModels("bmw")).size().isGreaterThan(0);
 
     }
 
     @Test
     public void testInputIsInModelList() throws Exception {
         Map<Brand, List<CarModel>> brandMap = Map.of(new Brand("bmw"), List.of(new CarModel("X5"), new CarModel("X6")), new Brand("tesla"), List.of(new CarModel("S"), new CarModel("3")));
-        List<CarModel> listOfModels = Customer.showCarModels("bmw", brandMap);
+        List<CarModel> listOfModels = Customer.showCarModels("bmw");
         assertEquals(2, listOfModels.size());
         assertEquals("X5", listOfModels.get(0).getCarModel());
         assertEquals("X6", listOfModels.get(1).getCarModel());
@@ -65,7 +65,7 @@ public class CarTest {
     @Test
     public void testInputIsValid() throws Exception {
         Map<Brand, List<CarModel>> brandMap = Map.of(new Brand("bmw"), List.of(new CarModel("X5"), new CarModel("X6")), new Brand("tesla"), List.of(new CarModel("S"), new CarModel("3")));
-        assertThrows(Exception.class, () -> Customer.showCarModels("ew", brandMap));
+        assertThrows(Exception.class, () -> Customer.showCarModels("ew"));
     }
 
 

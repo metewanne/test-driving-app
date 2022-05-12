@@ -1,9 +1,10 @@
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Brand {
 
     private String brandName;
-    private ArrayList<CarModel> carModelList;
+    //private ArrayList<CarModel> carModelList;
 
     public Brand() {
     }
@@ -14,7 +15,7 @@ public class Brand {
 
     public Brand(String brandName, ArrayList<CarModel> carModelList) {
         this.brandName = brandName;
-        this.carModelList = carModelList;
+        //this.carModelList = carModelList;
     }
 
     public void setBrandName(String brandName) {
@@ -26,7 +27,20 @@ public class Brand {
         return brandName;
     }
 
-//
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Brand brand = (Brand) o;
+        return Objects.equals(brandName, brand.brandName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(brandName);
+    }
+
+    //
 //    public void setCarModelList(ArrayList<CarModel> carModelList) {
 //        this.carModelList = carModelList;
 //    }

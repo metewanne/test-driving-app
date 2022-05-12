@@ -1,7 +1,6 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import org.assertj.core.util.Lists;
+
+import java.util.*;
 import java.util.regex.Pattern;
 import java.util.stream.*;
 
@@ -34,14 +33,14 @@ public class Customer {
         String brandInput = customerInput.next();
         chosenBrand.setBrandName(brandInput);
         String brandName = brandMatch(chosenBrand, brandMap);
-        System.out.println(showCarModels(brandName, brandMap));
+        System.out.println(showCarModels(brandName));
 
 
         System.out.println("Please select car model");
         CarModel model = new CarModel();
         String modelChoice = customerInput.next();
         model.setCarModelName(modelChoice);
-        System.out.println(showCarModels(model.getCarModelName(), brandMap));
+        System.out.println(showCarModels(model.getCarModelName()));
         //System.out.println(model.getMileage());
 
 
@@ -90,18 +89,20 @@ public class Customer {
     }
 
     // method takes brand user input and matches it to key in brandMap
-    public static List<CarModel> showCarModels(String brandMatchOutput, Map<Brand, List<CarModel>> brandMap) throws Exception {
-        if (brandMap.get(brandMatchOutput).isEmpty()) {
+    public static List<CarModel> showCarModels(String brandMatchOutput) throws Exception {
+        Brand brandOutput = new Brand();
+        brandOutput.setBrandName(brandMatchOutput);
+        List<CarModel> listOfModels = brandMap.get(brandOutput);
+        if (listOfModels == null || listOfModels.isEmpty()) {
             throw new Exception("no car model available");
         } else {
-            return brandMap.get(brandMatchOutput);
+            return brandMap.get(brandOutput);
         }
     }
 
-
-
-
-
-
+    public static CarModel selectCarModel(String brandMatchOutput, String carModel) throws Exception {
+        return showCarModels(brandMatchOutput).stream()
+            .filter(currentCarModel -> currentCarModel.getCarModelName().equals(carModel)).findFirst().orElseThrow(Exception :: new);
+    }
 
 }
