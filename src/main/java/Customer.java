@@ -7,7 +7,7 @@ import java.util.stream.*;
 
 public class Customer {
 
-    static Map<String, List<CarModel>> brandMap = Map.of("bmw", List.of(new CarModel("X5", 5000), new CarModel("X6", 1000)), "tesla", List.of(new CarModel("S", 2000), new CarModel("3", 100)));
+    static Map<Brand, List<CarModel>> brandMap = Map.of(new Brand("bmw"), List.of(new CarModel("X5", 5000), new CarModel("X6", 1000)), new Brand("tesla"), List.of(new CarModel("S", 2000), new CarModel("3", 100)));
 
 
     public static void main(String[] args) throws Exception {
@@ -26,14 +26,14 @@ public class Customer {
         patternMatches(email, "^(.+)@(\\S+)$");
 
         System.out.println("Please select a brand");
+        for (Brand key : brandMap.keySet()){
+            System.out.println(key.getBrandName());
+        }
 
-        System.out.println(showBrandList());
-
-        Brand brand1 = new Brand();
-        String brand = customerInput.next();
-        brand1.setBrandName(brand);
-        String brandName = brandMatch(brand1, showBrandList());
-
+        Brand chosenBrand = new Brand();
+        String brandInput = customerInput.next();
+        chosenBrand.setBrandName(brandInput);
+        String brandName = brandMatch(chosenBrand, brandMap);
         System.out.println(showCarModels(brandName, brandMap));
 
 
@@ -76,47 +76,45 @@ public class Customer {
                 .matches();
     }
 
-    public static String brandMatch(Brand brand, List brandList) throws Exception {
-        Brand chosenBrand = brand;
-        List<String> listOfBrands = brandList;
+    public static String brandMatch(Brand brandInput, Map<Brand, List<CarModel>> brandMap) throws Exception {
+        Brand chosenBrand = brandInput;
 
         List<String> lowerCaseBrands = new ArrayList<>();
-        for (int i = 0; i < listOfBrands.size(); i++) {
-            lowerCaseBrands.add(listOfBrands.get(i).toLowerCase());
+        for (Brand key : brandMap.keySet()){
+            lowerCaseBrands.add(key.getBrandName().toLowerCase());
         }
-
         if (!lowerCaseBrands.contains(chosenBrand.getBrandName().toLowerCase())) {
             throw new Exception("Brand not in list");
         }
         return chosenBrand.getBrandName().toLowerCase();
     }
+//
+//    public static List<Brand> brandList() {
+//        List<Brand> carBrands = new ArrayList<>();
+//        carBrands.add(new Brand("BMW"));
+//        carBrands.add(new Brand("Tesla"));
+//        carBrands.add(new Brand("Mercedes"));
+//        carBrands.add(new Brand("Bentley"));
+//        carBrands.add(new Brand("Ferrari"));
+//        return carBrands;
+//    }
 
-    public static List<Brand> brandList() {
-        List<Brand> carBrands = new ArrayList<>();
-        carBrands.add(new Brand("BMW"));
-        carBrands.add(new Brand("Tesla"));
-        carBrands.add(new Brand("Mercedes"));
-        carBrands.add(new Brand("Bentley"));
-        carBrands.add(new Brand("Ferrari"));
-        return carBrands;
-    }
 
-
-    public static List<String> showBrandList() {
-
-        List<String> brand = new ArrayList<>();
-        for (int i = 0; i < brandList().size(); i++) {
-            brand.add(brandList().get(i).getBrandName());
-        }
-        return brand;
-    }
+//    public static List<String> showBrandList() {
+//
+//        List<String> brand = new ArrayList<>();
+//        for (int i = 0; i < brandList().size(); i++) {
+//            brand.add(brandList().get(i).getBrandName());
+//        }
+//        return brand;
+//    }
 
     // method takes brand user input and matches it to key in brandMap
-    public static List<CarModel> showCarModels(String brandMatch, Map<String, List<CarModel>> brandMap) throws Exception {
-        if (brandMap.get(brandMatch).isEmpty()) {
+    public static List<CarModel> showCarModels(String brandMatchOutput, Map<Brand, List<CarModel>> brandMap) throws Exception {
+        if (brandMap.get(brandMatchOutput).isEmpty()) {
             throw new Exception("no car model available");
         } else {
-            return brandMap.get(brandMatch);
+            return brandMap.get(brandMatchOutput);
         }
     }
 

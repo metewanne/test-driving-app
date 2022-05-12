@@ -37,8 +37,8 @@ public class CarTest {
 
     @Test
     public void testBrandList() throws Exception {
-        brand.setBrandName("BMW");
-        assertThat(customer.brandMatch(brand, customer.showBrandList()));
+        brand.setBrandName("hfrukdk");
+        assertThat(customer.brandMap.get(brand.getBrandName()));
     }
 
     //to check car model list is not empty - To do
@@ -46,7 +46,7 @@ public class CarTest {
     public void testCarModelListIsEmpty() throws Exception {
         List<CarModel> modelList = new ArrayList<>();
         modelList.add(new CarModel("i8"));
-        brandMap = Map.of("bmw", modelList);
+        Map<Brand, List<CarModel>> brandMap = Map.of(new Brand("bmw"), List.of(new CarModel("X5"), new CarModel("X6")), new Brand("tesla"), List.of(new CarModel("S"), new CarModel("3")));
 
         assertThat(Customer.showCarModels("bmw", brandMap)).size().isGreaterThan(0);
 
@@ -54,7 +54,7 @@ public class CarTest {
 
     @Test
     public void testInputIsInModelList() throws Exception {
-        Map<String, List<CarModel>> brandMap = Map.of("bmw", List.of(new CarModel("X5"), new CarModel("X6")), "tesla", List.of(new CarModel("S"), new CarModel("3")));
+        Map<Brand, List<CarModel>> brandMap = Map.of(new Brand("bmw"), List.of(new CarModel("X5"), new CarModel("X6")), new Brand("tesla"), List.of(new CarModel("S"), new CarModel("3")));
         List<CarModel> listOfModels = Customer.showCarModels("bmw", brandMap);
         assertEquals(2, listOfModels.size());
         assertEquals("X5", listOfModels.get(0).getCarModel());
@@ -64,7 +64,7 @@ public class CarTest {
 
     @Test
     public void testInputIsValid() throws Exception {
-        Map<String, List<CarModel>> brandMap = Map.of("bmw", List.of(new CarModel("X5"), new CarModel("X6")), "tesla", List.of(new CarModel("S"), new CarModel("3")));
+        Map<Brand, List<CarModel>> brandMap = Map.of(new Brand("bmw"), List.of(new CarModel("X5"), new CarModel("X6")), new Brand("tesla"), List.of(new CarModel("S"), new CarModel("3")));
         assertThrows(Exception.class, () -> Customer.showCarModels("ew", brandMap));
     }
 

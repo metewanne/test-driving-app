@@ -17,26 +17,28 @@ public class Brand {
         this.carModelList = carModelList;
     }
 
+    public void setBrandName(String brandName) {
+        this.brandName = brandName;
+    }
+
     //Brand variable
     public String getBrandName() {
         return brandName;
     }
 
-    public void setBrandName(String brandName) {
-        this.brandName = brandName;
-    }
+//
+//    public void setCarModelList(ArrayList<CarModel> carModelList) {
+//        this.carModelList = carModelList;
+//    }
+//
+//    public ArrayList<CarModel> getCarModelList() {
+//        return carModelList;
+//    }
 
-    public ArrayList<CarModel> getCarModelList() {
-        return carModelList;
-    }
 
-    public void setCarModelList(ArrayList<CarModel> carModelList) {
-        this.carModelList = carModelList;
-    }
-
-    public String toString(){
-       return getBrandName() + " " + getCarModelList();
-    }
+//    public String toString(){
+//       return getBrandName() + " " + getCarModelList();
+//    }
 
     //     void printCarModels() {
 //
