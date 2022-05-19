@@ -13,10 +13,10 @@ public class Brand {
         this.brandName = brandName;
     }
 
-    public Brand(String brandName, ArrayList<CarModel> carModelList) {
-        this.brandName = brandName;
-        //this.carModelList = carModelList;
-    }
+//    public Brand(String brandName, ArrayList<CarModel> carModelList) {
+//        this.brandName = brandName;
+//        //this.carModelList = carModelList;
+//    }
 
     public void setBrandName(String brandName) {
         this.brandName = brandName;

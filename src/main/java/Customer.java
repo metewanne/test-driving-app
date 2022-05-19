@@ -1,8 +1,6 @@
-import org.assertj.core.util.Lists;
-
 import java.util.*;
 import java.util.regex.Pattern;
-import java.util.stream.*;
+
 
 public class Customer {
 
@@ -33,16 +31,16 @@ public class Customer {
         String brandInput = customerInput.next();
         chosenBrand.setBrandName(brandInput);
         String brandName = brandMatch(chosenBrand, brandMap);
-        System.out.println(showCarModels(brandName));
-
 
         System.out.println("Please select car model");
-        CarModel model = new CarModel();
+        for (CarModel model : showCarModels(brandName)){
+            System.out.println(model);
+        }
         String modelChoice = customerInput.next();
+        CarModel model = new CarModel();
         model.setCarModelName(modelChoice);
-        System.out.println(showCarModels(model.getCarModelName()));
-        //System.out.println(model.getMileage());
-
+//        System.out.println(checkCarModel(brandName, modelChoice));
+        //System.out.println(brandMap.get(model.getB).get(model.getMileage()));
 
     }
 
@@ -88,7 +86,7 @@ public class Customer {
         return chosenBrand.getBrandName().toLowerCase();
     }
 
-    // method takes brand user input and matches it to key in brandMap
+    // method takes brand user input and matches it to key in brandMap to show list of car models
     public static List<CarModel> showCarModels(String brandMatchOutput) throws Exception {
         Brand brandOutput = new Brand();
         brandOutput.setBrandName(brandMatchOutput);
@@ -96,11 +94,22 @@ public class Customer {
         if (listOfModels == null || listOfModels.isEmpty()) {
             throw new Exception("no car model available");
         } else {
-            return brandMap.get(brandOutput);
+            return listOfModels;
         }
     }
 
-    public static CarModel selectCarModel(String brandMatchOutput, String carModel) throws Exception {
+//    public static boolean checkCarModel(String chosenBrand, String chosenModel) throws Exception{
+//        for (CarModel model : showCarModels(chosenBrand)){
+//            if(!showCarModels(chosenBrand).contains(chosenModel)){
+//                throw new Exception("model does not exist");
+//            } else {
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
+
+    public static CarModel filterCarModel(String brandMatchOutput, String carModel) throws Exception {
         return showCarModels(brandMatchOutput).stream()
             .filter(currentCarModel -> currentCarModel.getCarModelName().equals(carModel)).findFirst().orElseThrow(Exception :: new);
     }

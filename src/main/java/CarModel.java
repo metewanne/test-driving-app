@@ -9,7 +9,7 @@ public class CarModel {
 
     public CarModel(String carModelName, int mileage) {
         this.carModelName = carModelName;
-        this.mileage = mileage;
+        setMileage(mileage);
     }
 
 
