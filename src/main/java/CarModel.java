@@ -35,8 +35,15 @@ public class CarModel {
 
     }
 
+//    public String toString() {
+//        return getCarModel();
+//    }
+
+
+    @Override
     public String toString() {
-        return getCarModel();
+        return "model='" + carModelName + '\'' +
+                ", mileage=" + mileage;
     }
 
     public void setMileage(int mileage) {

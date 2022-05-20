@@ -5,8 +5,6 @@ import java.util.regex.Pattern;
 public class Customer {
 
     static Map<Brand, List<CarModel>> brandMap = Map.of(new Brand("bmw"), List.of(new CarModel("X5", 5000), new CarModel("X6", 1000)), new Brand("tesla"), List.of(new CarModel("S", 2000), new CarModel("3", 100)));
-
-
     public static void main(String[] args) throws Exception {
 
         Scanner customerInput = new Scanner(System.in);
@@ -39,33 +37,30 @@ public class Customer {
         String modelChoice = customerInput.next();
         CarModel model = new CarModel();
         model.setCarModelName(modelChoice);
-//        System.out.println(checkCarModel(brandName, modelChoice));
-        //System.out.println(brandMap.get(model.getB).get(model.getMileage()));
+        System.out.println(checkCarModel(brandName, modelChoice));
+        //System.out.println(brandMap.get();
 
     }
 
 
     public static String inputCustomerName(String customerName) throws Exception {
 
-        String name = customerName;
-
-        if (name == null || name.trim().equals("")) {
+        if (customerName == null || customerName.trim().equals("")) {
             throw new Exception("Empty input");
         }
-        char[] letters = name.toCharArray();
+        char[] letters = customerName.toCharArray();
         for (char c : letters) {
             if (Character.isDigit(c)) {
                 throw new Exception("Incorrect type of input");
             }
         }
 
-        return name;
+        return customerName;
     }
 
     public static boolean patternMatches(String emailAddress, String regexPattern) throws Exception {
-        String email = emailAddress;
 
-        if (!email.matches(regexPattern)) {
+        if (!emailAddress.matches(regexPattern)) {
             throw new Exception("Invalid email");
         }
         return Pattern.compile(regexPattern)
@@ -74,16 +69,15 @@ public class Customer {
     }
 
     public static String brandMatch(Brand brandInput, Map<Brand, List<CarModel>> brandMap) throws Exception {
-        Brand chosenBrand = brandInput;
 
         List<String> lowerCaseBrands = new ArrayList<>();
         for (Brand key : brandMap.keySet()){
             lowerCaseBrands.add(key.getBrandName().toLowerCase());
         }
-        if (!lowerCaseBrands.contains(chosenBrand.getBrandName().toLowerCase())) {
+        if (!lowerCaseBrands.contains(brandInput.getBrandName().toLowerCase())) {
             throw new Exception("Brand not in list");
         }
-        return chosenBrand.getBrandName().toLowerCase();
+        return brandInput.getBrandName().toLowerCase();
     }
 
     // method takes brand user input and matches it to key in brandMap to show list of car models
@@ -98,16 +92,20 @@ public class Customer {
         }
     }
 
-//    public static boolean checkCarModel(String chosenBrand, String chosenModel) throws Exception{
-//        for (CarModel model : showCarModels(chosenBrand)){
-//            if(!showCarModels(chosenBrand).contains(chosenModel)){
-//                throw new Exception("model does not exist");
-//            } else {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
+    public static CarModel checkCarModel(String chosenBrand, String chosenModel) throws Exception{
+        List<CarModel> listOfModels = showCarModels(chosenBrand);
+        CarModel existingModel = null;
+        for (CarModel model : listOfModels){
+            if(model.getCarModelName().equals(chosenModel)){
+                existingModel = model;
+                break;
+            }
+        }
+        if (existingModel == null) {
+            throw new Exception("model does not exist");
+        }
+        return existingModel;
+    }
 
     public static CarModel filterCarModel(String brandMatchOutput, String carModel) throws Exception {
         return showCarModels(brandMatchOutput).stream()
