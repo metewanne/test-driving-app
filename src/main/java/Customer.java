@@ -4,9 +4,13 @@ import java.util.regex.Pattern;
 
 public class Customer {
 
-    static Map<Brand, List<CarModel>> brandMap = Map.of(new Brand("bmw"), List.of(new CarModel("X5", 5000),
-            new CarModel("X6", 1000)), new Brand("tesla"), List.of(new CarModel("S", 2000),
-            new CarModel("3", 100)));
+    static Map<Brand, List<CarModel>> brandMap = Map.of(new Brand("bmw"), List.of(new CarModel("X5", 5000), new CarModel("X6", 1000)),
+            new Brand("tesla"), List.of(new CarModel("S", 2000), new CarModel("X", 100), new CarModel("X", 200)),
+            new Brand("mercedes"), List.of(new CarModel("A-Class", 500), new CarModel(("E-Class"), 14000)),
+            new Brand("audi"), List.of(new CarModel("A3", 1000), new CarModel("Q5", 5000), new CarModel("R8", 3000)),
+            new Brand("ferrari"), List.of(new CarModel("488", 100), new CarModel("F8", 10000)),
+            new Brand("porsche"), List.of(new CarModel("911", 400), new CarModel("Panamera", 500), new CarModel("Cayenne", 2000)));
+
     public static void main(String[] args) throws Exception {
 
         Scanner customerInput = new Scanner(System.in);
