@@ -4,7 +4,6 @@ import java.util.Objects;
 public class Brand {
 
     private String brandName;
-    //private ArrayList<CarModel> carModelList;
 
     public Brand() {
     }
@@ -13,14 +12,10 @@ public class Brand {
         this.brandName = brandName;
     }
 
-//    public Brand(String brandName, ArrayList<CarModel> carModelList) {
-//        this.brandName = brandName;
-//        //this.carModelList = carModelList;
-//    }
-
     public void setBrandName(String brandName) {
         this.brandName = brandName;
     }
+
 
     //Brand variable
     public String getBrandName() {
@@ -40,24 +35,4 @@ public class Brand {
         return Objects.hash(brandName);
     }
 
-    //
-//    public void setCarModelList(ArrayList<CarModel> carModelList) {
-//        this.carModelList = carModelList;
-//    }
-//
-//    public ArrayList<CarModel> getCarModelList() {
-//        return carModelList;
-//    }
-
-
-//    public String toString(){
-//       return getBrandName() + " " + getCarModelList();
-//    }
-
-    //     void printCarModels() {
-//
-//     for (CarModel c : this.carModelList) {
-//          System.out.println(c);
-//      }
-//     }
 }
