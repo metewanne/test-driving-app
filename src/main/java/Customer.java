@@ -4,7 +4,9 @@ import java.util.regex.Pattern;
 
 public class Customer {
 
-    static Map<Brand, List<CarModel>> brandMap = Map.of(new Brand("bmw"), List.of(new CarModel("X5", 5000), new CarModel("X6", 1000)), new Brand("tesla"), List.of(new CarModel("S", 2000), new CarModel("3", 100)));
+    static Map<Brand, List<CarModel>> brandMap = Map.of(new Brand("bmw"), List.of(new CarModel("X5", 5000),
+            new CarModel("X6", 1000)), new Brand("tesla"), List.of(new CarModel("S", 2000),
+            new CarModel("3", 100)));
     public static void main(String[] args) throws Exception {
 
         Scanner customerInput = new Scanner(System.in);
@@ -32,7 +34,7 @@ public class Customer {
 
         System.out.println("Please select car model");
         for (CarModel model : showCarModels(brandName)){
-            System.out.println(model);
+            System.out.println(model.getCarModelName());
         }
         String modelChoice = customerInput.next();
         CarModel model = new CarModel();
