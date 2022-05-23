@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Brand {
 
@@ -11,13 +12,27 @@ public class Brand {
         this.brandName = brandName;
     }
 
+    public void setBrandName(String brandName) {
+        this.brandName = brandName;
+    }
+
+
     //Brand variable
     public String getBrandName() {
         return brandName;
     }
 
-    public void setBrandName(String brandName) {
-        this.brandName = brandName;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Brand brand = (Brand) o;
+        return Objects.equals(brandName, brand.brandName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(brandName);
     }
 
 }
