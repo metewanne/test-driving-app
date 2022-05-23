@@ -1,5 +1,6 @@
 import java.util.*;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 
 public class Customer {
@@ -28,7 +29,12 @@ public class Customer {
 
         System.out.println("Please select a brand");
         for (Brand key : brandMap.keySet()){
-            System.out.println(key.getBrandName());
+            if(key.getBrandName().equals("bmw")){
+                System.out.println(key.getBrandName().toUpperCase());
+            } else {
+                System.out.println(key.getBrandName().substring(0, 1).toUpperCase() + key.getBrandName().substring(1));
+
+            }
         }
 
         Brand chosenBrand = new Brand();
@@ -36,10 +42,24 @@ public class Customer {
         chosenBrand.setBrandName(brandInput);
         String brandName = brandMatch(chosenBrand, brandMap);
 
-        System.out.println("Please select car model");
-        for (CarModel model : showCarModels(brandName)){
-            System.out.println(model.getCarModelName());
+        System.out.println("Do you want to sort the cars by mileage");
+        String sortMileageChoice = customerInput.next().toLowerCase();
+        if(sortMileageChoice.equals("yes") || sortMileageChoice.equals("y")){
+            List<CarModel> listOfModels = showCarModels(brandName);
+
+            List<CarModel> sortedCarModel = listOfModels.stream()
+                    .sorted(Comparator.comparingInt(CarModel::getMileage))
+                    .collect(Collectors.toList());
+
+            sortedCarModel.forEach(System.out::println);
+        } else if(sortMileageChoice.equals("n") || sortMileageChoice.equals("no")) {
+            System.out.println("Please select car model");
+            for (CarModel model : showCarModels(brandName)){
+                System.out.println(model.getCarModelName());
+            }
+
         }
+
         String modelChoice = customerInput.next();
         CarModel model = new CarModel();
         model.setCarModelName(modelChoice);
