@@ -38,7 +38,6 @@ public class Customer {
         CarModel model = new CarModel();
         model.setCarModelName(modelChoice);
         System.out.println(checkCarModel(brandName, modelChoice));
-        //System.out.println(brandMap.get();
 
     }
 
@@ -92,6 +91,7 @@ public class Customer {
         }
     }
 
+    // checks if chosen car model is in list of car models
     public static CarModel checkCarModel(String chosenBrand, String chosenModel) throws Exception{
         List<CarModel> listOfModels = showCarModels(chosenBrand);
         CarModel existingModel = null;
