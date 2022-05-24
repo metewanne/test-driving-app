@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.testng.annotations.BeforeTest;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -48,7 +49,6 @@ public class CarTest {
 
     @Test
     public void testChosenModelIsInModelList() throws Exception {
-        Map<Brand, List<CarModel>> brandMap = Map.of(new Brand("bmw"), List.of(new CarModel("X5"), new CarModel("X6")), new Brand("tesla"), List.of(new CarModel("S"), new CarModel("3")));
         List<CarModel> listOfModels = Customer.showCarModels("bmw");
         assertEquals(2, listOfModels.size());
         assertEquals("X5", listOfModels.get(0).getCarModel());
@@ -61,6 +61,37 @@ public class CarTest {
         Map<Brand, List<CarModel>> brandMap = Map.of(new Brand("bmw"), List.of(new CarModel("X5"), new CarModel("X6")), new Brand("tesla"), List.of(new CarModel("S"), new CarModel("3")));
         assertThrows(Exception.class, () -> Customer.showCarModels("ew"));
     }
+
+    @Test
+    public void testSortBrandsAlphabetically() throws Exception {
+
+        List<String> listOfBrands = Customer.printListOfBrands();
+        Collections.sort(listOfBrands);
+
+        assertEquals(6, listOfBrands.size());
+        assertEquals("Audi", listOfBrands.get(0));
+        assertEquals("BMW", listOfBrands.get(1));
+
+    }
+
+    @Test
+    public void testSortMileage() throws Exception {
+        brand.setBrandName("bmw");
+
+        List<CarModel> listOfModels = Customer.showCarModels(brand.getBrandName());
+
+        List<CarModel> sortedCarModel = listOfModels.stream()
+                .sorted(Comparator.comparingInt(CarModel::getMileage))
+                .collect(Collectors.toList());
+
+        assertEquals(1000, sortedCarModel.get(0).getMileage());
+        assertEquals(5000, sortedCarModel.get(1).getMileage());
+
+    }
+
+    //testSortPrice
+
+    //testSortYear
 
 
     }
