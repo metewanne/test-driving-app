@@ -27,15 +27,16 @@ public class Customer {
         String email = customerInput.next();
         patternMatches(email, "^(.+)@(\\S+)$");
 
-        System.out.println("Please select a brand");
-        for (Brand key : brandMap.keySet()) {
-            if (key.getBrandName().equals("bmw")) {
-                System.out.println(key.getBrandName().toUpperCase());
-            } else {
-                System.out.println(key.getBrandName().substring(0, 1).toUpperCase() + key.getBrandName().substring(1));
-
-            }
+        System.out.println("Do you want to see the brands in alphabetic order?");
+        List<Brand> listOfBrands = print;
+        if (sortMileageChoice.equals("mileage")) {
+            List<CarModel> sortedCarModel = listOfModels.stream()
+                    .sorted(Comparator.comparingInt(CarModel::getMileage))
+                    .collect(Collectors.toList());
+            sortedCarModel.forEach(System.out::println);
         }
+
+        printOfBrands();
 
         Brand chosenBrand = new Brand();
         String brandInput = customerInput.next();
@@ -52,6 +53,19 @@ public class Customer {
 
     }
 
+    public static void printOfBrands(){
+        for (Brand key : brandMap.keySet()) {
+            if (key.getBrandName().equals("bmw")) {
+                System.out.println(key.getBrandName().toUpperCase());
+            } else {
+                System.out.println(key.getBrandName().substring(0, 1).toUpperCase() + key.getBrandName().substring(1));
+
+            }
+        }
+
+
+
+    }
 
     public static String inputCustomerName(String customerName) throws Exception {
 
