@@ -109,7 +109,7 @@ public class Customer {
         List<CarModel> listOfModels = showCarModels(chosenBrand);
         CarModel existingModel = null;
         for (CarModel model : listOfModels) {
-            if (model.getCarModelName().equals(chosenModel)) {
+            if (model.getCarModelName().equalsIgnoreCase(chosenModel)) {
                 existingModel = model;
                 break;
             }
