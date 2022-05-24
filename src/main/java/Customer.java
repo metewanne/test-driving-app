@@ -28,15 +28,8 @@ public class Customer {
         patternMatches(email, "^(.+)@(\\S+)$");
 
         System.out.println("Do you want to see the brands in alphabetic order?");
-        List<Brand> listOfBrands = print;
-        if (sortMileageChoice.equals("mileage")) {
-            List<CarModel> sortedCarModel = listOfModels.stream()
-                    .sorted(Comparator.comparingInt(CarModel::getMileage))
-                    .collect(Collectors.toList());
-            sortedCarModel.forEach(System.out::println);
-        }
-
-        printOfBrands();
+        String userChoice = customerInput.next().toLowerCase();
+        chooseToSortBrands(userChoice);
 
         Brand chosenBrand = new Brand();
         String brandInput = customerInput.next();
@@ -53,18 +46,31 @@ public class Customer {
 
     }
 
-    public static void printOfBrands(){
+    public static List<String> printListOfBrands(){
+        List<String> listOfBrands = new ArrayList<>();
         for (Brand key : brandMap.keySet()) {
+            String nameOfBrand;
             if (key.getBrandName().equals("bmw")) {
-                System.out.println(key.getBrandName().toUpperCase());
+                nameOfBrand = key.getBrandName().toUpperCase();
+                listOfBrands.add(nameOfBrand);
             } else {
-                System.out.println(key.getBrandName().substring(0, 1).toUpperCase() + key.getBrandName().substring(1));
-
+                nameOfBrand = key.getBrandName().substring(0, 1).toUpperCase() + key.getBrandName().substring(1);
+                listOfBrands.add(nameOfBrand);
             }
         }
+        return listOfBrands;
+    }
 
-
-
+    public static void chooseToSortBrands(String userChoice){
+        if (userChoice.equals("yes")||userChoice.equals("y")) {
+            System.out.println("Please select a brand:");
+            List<String> listOfBrands = printListOfBrands();
+            Collections.sort(listOfBrands);
+            Brand.printBrands(listOfBrands);
+        } else if (userChoice.equals("no")||userChoice.equals("n")) {
+            System.out.println("Please select a brand:");
+            Brand.printBrands(printListOfBrands());
+        }
     }
 
     public static String inputCustomerName(String customerName) throws Exception {

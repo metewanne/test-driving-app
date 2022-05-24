@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Brand {
@@ -35,4 +36,9 @@ public class Brand {
         return Objects.hash(brandName);
     }
 
+    public static void printBrands(List<String> brands) {
+        for(String brand : brands){
+            System.out.println(brand);
+        }
+    }
 }
