@@ -27,15 +27,9 @@ public class Customer {
         String email = customerInput.next();
         patternMatches(email, "^(.+)@(\\S+)$");
 
-        System.out.println("Please select a brand");
-        for (Brand key : brandMap.keySet()) {
-            if (key.getBrandName().equals("bmw")) {
-                System.out.println(key.getBrandName().toUpperCase());
-            } else {
-                System.out.println(key.getBrandName().substring(0, 1).toUpperCase() + key.getBrandName().substring(1));
-
-            }
-        }
+        System.out.println("Do you want to see the brands in alphabetic order?");
+        String userChoice = customerInput.next().toLowerCase();
+        chooseToSortBrands(userChoice);
 
         Brand chosenBrand = new Brand();
         String brandInput = customerInput.next();
@@ -43,8 +37,8 @@ public class Customer {
         String brandName = brandMatch(chosenBrand, brandMap);
 
         System.out.println("Do you want to sort the cars by mileage or price or year? If not, please type no");
-        String sortMileageChoice = customerInput.next().toLowerCase();
-        sortCars(sortMileageChoice, brandName);
+        String sortChoice = customerInput.next().toLowerCase();
+        sortCars(sortChoice, brandName);
         String modelChoice = customerInput.next();
         CarModel model = new CarModel();
         model.setCarModelName(modelChoice);
@@ -52,6 +46,32 @@ public class Customer {
 
     }
 
+    public static List<String> printListOfBrands(){
+        List<String> listOfBrands = new ArrayList<>();
+        for (Brand key : brandMap.keySet()) {
+            String nameOfBrand;
+            if (key.getBrandName().equals("bmw")) {
+                nameOfBrand = key.getBrandName().toUpperCase();
+                listOfBrands.add(nameOfBrand);
+            } else {
+                nameOfBrand = key.getBrandName().substring(0, 1).toUpperCase() + key.getBrandName().substring(1);
+                listOfBrands.add(nameOfBrand);
+            }
+        }
+        return listOfBrands;
+    }
+
+    public static void chooseToSortBrands(String userChoice){
+        if (userChoice.equals("yes")||userChoice.equals("y")) {
+            System.out.println("Please select a brand:");
+            List<String> listOfBrands = printListOfBrands();
+            Collections.sort(listOfBrands);
+            Brand.printBrands(listOfBrands);
+        } else if (userChoice.equals("no")||userChoice.equals("n")) {
+            System.out.println("Please select a brand:");
+            Brand.printBrands(printListOfBrands());
+        }
+    }
 
     public static String inputCustomerName(String customerName) throws Exception {
 
@@ -120,30 +140,36 @@ public class Customer {
         return existingModel;
     }
 
-    public static List<CarModel> sortCars(String sortMileageChoice, String brandName) throws Exception {
+    public static List<CarModel> sortCars(String sortChoice, String brandName) throws Exception {
 
         List<CarModel> listOfModels = showCarModels(brandName);
-        if (sortMileageChoice.equals("mileage")) {
-            List<CarModel> sortedCarModel = listOfModels.stream()
-                    .sorted(Comparator.comparingInt(CarModel::getMileage))
-                    .collect(Collectors.toList());
-            sortedCarModel.forEach(System.out::println);
-        } else if (sortMileageChoice.equals("price")) {
-            List<CarModel> sortedPrice = listOfModels.stream()
-                    .sorted(Comparator.comparingDouble(CarModel::getPrice))
-                    .collect(Collectors.toList());
-            sortedPrice.forEach(System.out::println);
-        } else if (sortMileageChoice.equals("year")) {
-            List<CarModel> sortedYear = listOfModels.stream()
-                    .sorted(Comparator.comparingInt(CarModel::getYear)
-                            .reversed())
-                    .collect(Collectors.toList());
-            sortedYear.forEach(System.out::println);
-        } else if (sortMileageChoice.equals("n") || sortMileageChoice.equals("no")) {
-            System.out.println("Please select car model");
-            for (CarModel model : showCarModels(brandName)) {
-                System.out.println(model.getCarModelName());
-            }
+        switch (sortChoice) {
+            case "mileage":
+                List<CarModel> sortedCarModel = listOfModels.stream()
+                        .sorted(Comparator.comparingInt(CarModel::getMileage))
+                        .collect(Collectors.toList());
+                sortedCarModel.forEach(System.out::println);
+                break;
+            case "price":
+                List<CarModel> sortedPrice = listOfModels.stream()
+                        .sorted(Comparator.comparingDouble(CarModel::getPrice))
+                        .collect(Collectors.toList());
+                sortedPrice.forEach(System.out::println);
+                break;
+            case "year":
+                List<CarModel> sortedYear = listOfModels.stream()
+                        .sorted(Comparator.comparingInt(CarModel::getYear)
+                                .reversed())
+                        .collect(Collectors.toList());
+                sortedYear.forEach(System.out::println);
+                break;
+            case "n":
+            case "no":
+                System.out.println("Please select car model");
+                for (CarModel model : showCarModels(brandName)) {
+                    System.out.println(model.getCarModelName());
+                }
+                break;
         }
         return listOfModels;
     }
