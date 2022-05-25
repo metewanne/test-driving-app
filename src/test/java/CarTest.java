@@ -99,7 +99,7 @@ public class CarTest {
         List<CarModel> listOfModels = Customer.showCarModels(brand.getBrandName());
 
         List<CarModel> sortedCarPrice = listOfModels.stream()
-                .sorted(Comparator.comparingInt(CarModel::getMileage))
+                .sorted(Comparator.comparingDouble(CarModel::getPrice))
                 .collect(Collectors.toList());
 
         assertEquals(20000, sortedCarPrice.get(0).getPrice());
