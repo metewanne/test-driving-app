@@ -15,6 +15,12 @@ public class CarTest {
 
     Customer customer = new Customer();
     Brand brand = new Brand();
+    Map<Brand, List<CarModel>> brandMap = Map.of(new Brand("bmw"), List.of(new CarModel("X5", 5000, 28000, 2019), new CarModel("X6", 1000, 20000, 2020)),
+            new Brand("tesla"), List.of(new CarModel("S", 2000, 50000, 2020), new CarModel("X", 100, 40000, 2021), new CarModel("3", 45000, 55000, 2022)),
+            new Brand("mercedes"), List.of(new CarModel("A-Class", 500, 30000, 2010), new CarModel(("E-Class"), 14000, 15000, 2016)),
+            new Brand("audi"), List.of(new CarModel("A3", 1000, 65000, 2005), new CarModel("Q5", 5000, 40500, 2011), new CarModel("R8", 3000, 48000, 2015)),
+            new Brand("ferrari"), List.of(new CarModel("488", 100, 90000, 2003), new CarModel("F8", 10000, 80000, 2012)),
+            new Brand("porsche"), List.of(new CarModel("911", 400, 100000, 2000), new CarModel("Panamera", 500, 95000, 2015), new CarModel("Cayenne", 2000, 75000, 2002)));
 
     //@Test
     //Check that car class exists
@@ -29,7 +35,6 @@ public class CarTest {
 
     @Test
     public void testEmptyList() throws Exception {
-        //assertThat(customer.showBrandList().size()).isGreaterThan(0);
         assertThat(customer.brandMap.size()).isGreaterThan(0);
     }
 
@@ -58,7 +63,6 @@ public class CarTest {
 
     @Test
     public void testChosenModelIsValid() throws Exception {
-        Map<Brand, List<CarModel>> brandMap = Map.of(new Brand("bmw"), List.of(new CarModel("X5"), new CarModel("X6")), new Brand("tesla"), List.of(new CarModel("S"), new CarModel("3")));
         assertThrows(Exception.class, () -> Customer.showCarModels("ew"));
     }
 
@@ -89,10 +93,31 @@ public class CarTest {
 
     }
 
-    //testSortPrice
+    @Test
+    public void testSortPrice() throws Exception {
+        brand.setBrandName("bmw");
+        List<CarModel> listOfModels = Customer.showCarModels(brand.getBrandName());
 
-    //testSortYear
+        List<CarModel> sortedCarPrice = listOfModels.stream()
+                .sorted(Comparator.comparingInt(CarModel::getMileage))
+                .collect(Collectors.toList());
 
+        assertEquals(20000, sortedCarPrice.get(0).getPrice());
+        assertEquals(28000, sortedCarPrice.get(1).getPrice());
+    }
+
+    @Test
+    public void testSortYear() throws Exception {
+        brand.setBrandName("bmw");
+        List<CarModel> listOfModels = Customer.showCarModels(brand.getBrandName());
+
+        List<CarModel> sortedCarYear = listOfModels.stream()
+                .sorted(Comparator.comparingInt(CarModel::getYear))
+                .collect(Collectors.toList());
+
+        assertEquals(2019, sortedCarYear.get(0).getYear());
+        assertEquals(2020, sortedCarYear.get(1).getYear());
+    }
 
     }
 
