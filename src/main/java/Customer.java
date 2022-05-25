@@ -2,6 +2,8 @@ import java.util.*;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.toList;
+
 
 public class Customer {
 
@@ -35,9 +37,12 @@ public class Customer {
         String brandInput = customerInput.next();
         chosenBrand.setBrandName(brandInput);
         String brandName = brandMatch(chosenBrand, brandMap);
+        System.out.println("\n" + "Please select a brand from the list");
+        brandInput = customerInput.next();
 
-        System.out.println("Do you want to sort the cars by mileage or price or year? If not, please type no");
+        System.out.println("\n" + "Do you want to sort the cars by mileage or price or year? If not, please type no");
         String sortChoice = customerInput.next().toLowerCase();
+        System.out.println("Please select a car model:");
         sortCars(sortChoice, brandName);
         String modelChoice = customerInput.next();
         CarModel model = new CarModel();
@@ -105,7 +110,8 @@ public class Customer {
             lowerCaseBrands.add(key.getBrandName().toLowerCase());
         }
         if (!lowerCaseBrands.contains(brandInput.getBrandName().toLowerCase())) {
-            throw new Exception("Brand not in list");
+            System.out.println("Here is a list of all available cars:" +  "\n");
+            brandMap.forEach((key, value) -> System.out.println(key.getBrandName() + " : " + value.stream().map(CarModel::getCarModelName).collect(toList())));
         }
         return brandInput.getBrandName().toLowerCase();
     }
@@ -147,25 +153,24 @@ public class Customer {
             case "mileage":
                 List<CarModel> sortedCarModel = listOfModels.stream()
                         .sorted(Comparator.comparingInt(CarModel::getMileage))
-                        .collect(Collectors.toList());
+                        .collect(toList());
                 sortedCarModel.forEach(System.out::println);
                 break;
             case "price":
                 List<CarModel> sortedPrice = listOfModels.stream()
                         .sorted(Comparator.comparingDouble(CarModel::getPrice))
-                        .collect(Collectors.toList());
+                        .collect(toList());
                 sortedPrice.forEach(System.out::println);
                 break;
             case "year":
                 List<CarModel> sortedYear = listOfModels.stream()
                         .sorted(Comparator.comparingInt(CarModel::getYear)
                                 .reversed())
-                        .collect(Collectors.toList());
+                        .collect(toList());
                 sortedYear.forEach(System.out::println);
                 break;
             case "n":
             case "no":
-                System.out.println("Please select car model");
                 for (CarModel model : showCarModels(brandName)) {
                     System.out.println(model.getCarModelName());
                 }
