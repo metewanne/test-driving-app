@@ -51,6 +51,23 @@ public class Customer {
 
     }
 
+//
+//    public static String checkBrands(String brandInput) throws Exception {
+//        if (brandInput.equals("bmw")){
+//            Brand chosenBrand = new Brand();
+//            String input = customerInput.next();
+//            chosenBrand.setBrandName(input);
+//            String brandName = brandMatch(chosenBrand, brandMap);
+//        } else {
+//            System.out.println("\n" + "Please select a brand from the list");
+//            Brand chosen = new Brand();
+//            String input = customerInput.next();
+//            chosen.setBrandName(input);
+//            String brandName = brandMatch(chosen, brandMap);
+//
+//        }
+//    }
+
     public static List<String> printListOfBrands(){
         List<String> listOfBrands = new ArrayList<>();
         for (Brand key : brandMap.keySet()) {
