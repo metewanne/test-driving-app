@@ -14,9 +14,11 @@ public class Customer {
             new Brand("ferrari"), List.of(new CarModel("488", 100, 90000, 2003), new CarModel("F8", 10000, 80000, 2012)),
             new Brand("porsche"), List.of(new CarModel("911", 400, 100000, 2000), new CarModel("Panamera", 500, 95000, 2015), new CarModel("Cayenne", 2000, 75000, 2002)));
 
+    static Scanner customerInput = new Scanner(System.in);
+
     public static void main(String[] args) throws Exception {
 
-        Scanner customerInput = new Scanner(System.in);
+
         System.out.println("Enter first name");
         String firstName = customerInput.next();
         inputCustomerName(firstName);
@@ -33,12 +35,17 @@ public class Customer {
         String userChoice = customerInput.next().toLowerCase();
         chooseToSortBrands(userChoice);
 
-        Brand chosenBrand = new Brand();
+
+
+//        Brand chosenBrand = new Brand();
         String brandInput = customerInput.next();
-        chosenBrand.setBrandName(brandInput);
-        String brandName = brandMatch(chosenBrand, brandMap);
-        System.out.println("\n" + "Please select a brand from the list");
-        brandInput = customerInput.next();
+//        chosenBrand.setBrandName(brandInput);
+
+        String brandName = checkBrands(brandInput);
+
+//        String brandName = brandMatch(chosenBrand, brandMap);
+//        System.out.println("\n" + "Please select a brand from the list");
+//        brandInput = customerInput.next();
 
         System.out.println("\n" + "Do you want to sort the cars by mileage or price or year? If not, please type no");
         String sortChoice = customerInput.next().toLowerCase();
@@ -51,22 +58,26 @@ public class Customer {
 
     }
 
-//
-//    public static String checkBrands(String brandInput) throws Exception {
-//        if (brandInput.equals("bmw")){
-//            Brand chosenBrand = new Brand();
-//            String input = customerInput.next();
-//            chosenBrand.setBrandName(input);
-//            String brandName = brandMatch(chosenBrand, brandMap);
-//        } else {
-//            System.out.println("\n" + "Please select a brand from the list");
-//            Brand chosen = new Brand();
-//            String input = customerInput.next();
-//            chosen.setBrandName(input);
-//            String brandName = brandMatch(chosen, brandMap);
-//
-//        }
-//    }
+
+    public static String checkBrands(String brandInput) throws Exception {
+        String input;
+        String brandName;
+        if (brandInput.equals("bmw")){
+            Brand chosenBrand = new Brand();
+            input = customerInput.next();
+            chosenBrand.setBrandName(input);
+            brandName = brandMatch(chosenBrand, brandMap);
+        } else {
+            System.out.println("\n" + "Please select a brand from the list");
+            Brand chosen = new Brand();
+            input = customerInput.next();
+            chosen.setBrandName(input);
+            brandName = brandMatch(chosen, brandMap);
+
+        }
+
+        return brandName;
+    }
 
     public static List<String> printListOfBrands(){
         List<String> listOfBrands = new ArrayList<>();
