@@ -1,8 +1,4 @@
 import org.junit.jupiter.api.Test;
-
-import java.util.Scanner;
-
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -25,8 +21,7 @@ public class CustomerTest {
     public void testUsingSimpleRegex() throws Exception {
         String emailAddress = "username@domain.com";
         String regexPattern = "^(.+)@(\\S+)$";
-        Customer EmailValidation = null;
-        assertTrue(EmailValidation.patternMatches(emailAddress, regexPattern));
+        assertTrue(Customer.patternMatches(emailAddress, regexPattern));
     }
 
 
