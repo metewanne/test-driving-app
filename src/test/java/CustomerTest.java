@@ -6,6 +6,10 @@ public class CustomerTest {
 
     Customer customer = new Customer();
 
+    //test that it's not null
+    //test that it's not empty
+    //test that it's not an int
+    //test that the correct input is given
     @Test
     public void testEmptyInput() {
         assertThrows(Exception.class, () -> customer.inputCustomerName(""));
