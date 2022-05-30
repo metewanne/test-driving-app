@@ -25,8 +25,6 @@ public class Application {
         String brandInput = customerInput.next();
         chosenBrand.setBrandName(brandInput);
         String brandName = CarService.brandMatch(chosenBrand, CarService.brandMap);
-        System.out.println("\n" + "Please select a brand from the list");
-        brandInput = customerInput.next();
 
         System.out.println("\n" + "Do you want to sort the cars by mileage or price or year? If not, please type no");
         String sortChoice = customerInput.next().toLowerCase();

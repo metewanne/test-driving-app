@@ -1,12 +1,11 @@
-import java.util.EnumMap;
 
 public enum BrandTypes {
-    BMW("Bmw"),
-    TESLA("Tesla"),
-    MERCEDES("Mercedes"),
-    AUDI("Audi"),
-    FERRARI("Ferrari"),
-    PORSCHE("Porsche");
+    BMW("bmw"),
+    TESLA("tesla"),
+    MERCEDES("mercedes"),
+    AUDI("audi"),
+    FERRARI("ferrari"),
+    PORSCHE("porsche");
 
     private String name;
 
