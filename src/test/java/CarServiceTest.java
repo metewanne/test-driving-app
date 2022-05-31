@@ -22,6 +22,19 @@ public class CarServiceTest {
     //@Test
     //Check that car class exists
     @Test
+    public void setUpClass(){
+        CarService carService = new CarService();
+    }
+
+    @Test
+    public void newBrandName(){
+        //view the correct brands
+        //Asks for a new brand name
+        //go into brandmatch
+        //return the name
+    }
+
+    @Test
     public void testClassExists() {
         try {
             Class.forName("CarModel");

@@ -14,6 +14,7 @@ public class CarService {
 
     public static String brandMatch(Brand brandInput, Map<Brand, List<CarModel>> brandMap) throws Exception {
 
+        Scanner scanner = new Scanner(System.in);
         List<String> lowerCaseBrands = new ArrayList<>();
         for (Brand key : brandMap.keySet()) {
             lowerCaseBrands.add(key.getBrandName().toLowerCase());
@@ -21,6 +22,11 @@ public class CarService {
         if (!lowerCaseBrands.contains(brandInput.getBrandName().toLowerCase())) {
             System.out.println("Here is a list of all available cars:" +  "\n");
             brandMap.forEach((key, value) -> System.out.println(key.getBrandName() + " : " + value.stream().map(CarModel::getCarModelName).collect(toList())));
+
+            System.out.println("Please select your new brand - previous brand is not available");
+            String newBrandSelection = scanner.nextLine();
+            brandInput.setBrandName(newBrandSelection);
+
         }
         return brandInput.getBrandName().toLowerCase();
     }
