@@ -19,15 +19,17 @@ public class CarService {
         for (Brand key : brandMap.keySet()) {
             lowerCaseBrands.add(key.getBrandName().toLowerCase());
         }
-        if (!lowerCaseBrands.contains(brandInput.getBrandName().toLowerCase())) {
-            System.out.println("Here is a list of all available cars:" +  "\n");
+        while (!lowerCaseBrands.contains(brandInput.getBrandName().toLowerCase())) {
+            System.out.println("Here is a list of all available cars:" + "\n");
             brandMap.forEach((key, value) -> System.out.println(key.getBrandName() + " : " + value.stream().map(CarModel::getCarModelName).collect(toList())));
+
 
             System.out.println("Please select your new brand - previous brand is not available");
             String newBrandSelection = scanner.nextLine();
             brandInput.setBrandName(newBrandSelection);
 
         }
+
         return brandInput.getBrandName().toLowerCase();
     }
 
