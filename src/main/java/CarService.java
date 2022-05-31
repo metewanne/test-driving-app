@@ -23,8 +23,8 @@ public class CarService {
             System.out.println("Here is a list of all available cars:" + "\n");
             brandMap.forEach((key, value) -> System.out.println(key.getBrandName() + " : " + value.stream().map(CarModel::getCarModelName).collect(toList())));
 
-
-            System.out.println("Please select your new brand - previous brand is not available");
+            System.out.println();
+            System.out.println("Car brand is not available - please select your new brand");
             String newBrandSelection = scanner.nextLine();
             brandInput.setBrandName(newBrandSelection);
 
