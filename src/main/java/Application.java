@@ -5,19 +5,20 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         CarService carService = new CarService();
+        Customer customer = new Customer();
 
         Scanner customerInput = new Scanner(System.in);
         System.out.println("Enter first name");
         String firstName = customerInput.next();
-        Customer.inputCustomerName(firstName);
+        customer.inputCustomerName(firstName);
 
         System.out.println("Enter surname");
         String surname = customerInput.next();
-        Customer.inputCustomerName(surname);
+        customer.inputCustomerName(surname);
 
         System.out.println("Enter email address");
         String email = customerInput.next();
-        Customer.patternMatches(email, "^(.+)@(\\S+)$");
+        customer.patternMatches(email, "^(.+)@(\\S+)$");
 
         System.out.println("Do you want to see the brands in alphabetic order?");
         String userChoice = customerInput.next().toLowerCase();

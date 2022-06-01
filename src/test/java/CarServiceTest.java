@@ -1,24 +1,22 @@
 import org.junit.Assert;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
 import java.util.stream.Collectors;
-import org.mockito.Mockito.*;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 
 public class CarServiceTest {
 
 
-    Customer customer = new Customer();
-    CarService carService = new CarService();
-    Brand brand = new Brand();
+    Customer customer;
+    CarService carService;
+    Brand brand;
+
     Map<Brand, List<CarModel>> brandMap = Map.of(new Brand("bmw"), List.of(new CarModel("X5", 5000, 28000, 2019), new CarModel("X6", 1000, 20000, 2020)),
             new Brand("tesla"), List.of(new CarModel("S", 2000, 50000, 2020), new CarModel("X", 100, 40000, 2021), new CarModel("3", 45000, 55000, 2022)),
             new Brand("mercedes"), List.of(new CarModel("A-Class", 500, 30000, 2010), new CarModel(("E-Class"), 14000, 15000, 2016)),
@@ -26,11 +24,24 @@ public class CarServiceTest {
             new Brand("ferrari"), List.of(new CarModel("488", 100, 90000, 2003), new CarModel("F8", 10000, 80000, 2012)),
             new Brand("porsche"), List.of(new CarModel("911", 400, 100000, 2000), new CarModel("Panamera", 500, 95000, 2015), new CarModel("Cayenne", 2000, 75000, 2002)));
 
-    //@Test
-    //Check that car class exists
-    @Test
-    public void setUpClass(){
-        CarService carService = new CarService();
+    //Notes on Testing:
+    //You want to initialise a new object to each test
+    //@Test - starts from a clean slate by using the object within the class.
+    //Test methods should not be dependent on other test methods
+
+
+    /*
+    Methods should have their own initialised object for each test - Instead of creating an object for each method you
+    can declare the instance and create a method to assign an new object to the instance.
+
+    @Before Each will initiate a new object for each test method in the test class. No longer need to initialise the
+    object in each test method and stops duplication.
+     */
+    @BeforeEach
+    public void setUpClasses(){
+        customer = new Customer();
+        carService = new CarService();
+        brand = new Brand();
     }
 
     @Test
@@ -92,6 +103,15 @@ public class CarServiceTest {
         assertEquals("BMW", listOfBrands.get(1));
 
     }
+
+   /*
+   testSortMileage
+   testSortPrice
+   testSortYear
+
+   They need to be combined to just test the method opposed to writing a test for each element.
+
+    */
 
     @Test
     public void testSortMileage() throws Exception {

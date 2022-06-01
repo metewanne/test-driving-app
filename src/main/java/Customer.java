@@ -2,7 +2,8 @@ import java.util.regex.Pattern;
 
 public class Customer {
 
-    public static String inputCustomerName(String customerName) throws Exception {
+    //Changed from return type of String to void because it does not return anything
+    public void inputCustomerName(String customerName) throws Exception {
 
         if (customerName == null || customerName.trim().equals("")) {
             throw new Exception("Empty input");
@@ -14,10 +15,9 @@ public class Customer {
             }
         }
 
-        return customerName;
     }
 
-    public static boolean patternMatches(String emailAddress, String regexPattern) throws Exception {
+    public boolean patternMatches(String emailAddress, String regexPattern) throws Exception {
 
         if (!emailAddress.matches(regexPattern)) {
             throw new Exception("Invalid email");

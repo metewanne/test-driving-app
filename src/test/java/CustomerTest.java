@@ -25,7 +25,7 @@ public class CustomerTest {
     public void testUsingSimpleRegex() throws Exception {
         String emailAddress = "username@domain.com";
         String regexPattern = "^(.+)@(\\S+)$";
-        assertTrue(Customer.patternMatches(emailAddress, regexPattern));
+        assertTrue(customer.patternMatches(emailAddress, regexPattern));
     }
 
 
