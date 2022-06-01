@@ -5,14 +5,14 @@ import static java.util.stream.Collectors.toList;
 
 public class CarService {
 
-    static Map<Brand, List<CarModel>> brandMap = Map.of(new Brand(BrandTypes.BMW.toString()), List.of(new CarModel("X5", 5000, 28000, 2019), new CarModel("X6", 1000, 20000, 2020)),
+    Map<Brand, List<CarModel>> brandMap = Map.of(new Brand(BrandTypes.BMW.toString()), List.of(new CarModel("X5", 5000, 28000, 2019), new CarModel("X6", 1000, 20000, 2020)),
             new Brand(BrandTypes.TESLA.toString()), List.of(new CarModel("S", 2000, 50000, 2020), new CarModel("X", 100, 40000, 2021), new CarModel("3", 45000, 55000, 2022)),
             new Brand(BrandTypes.MERCEDES.toString()), List.of(new CarModel("A-Class", 500, 30000, 2010), new CarModel(("E-Class"), 14000, 15000, 2016)),
             new Brand(BrandTypes.AUDI.toString()), List.of(new CarModel("A3", 1000, 65000, 2005), new CarModel("Q5", 5000, 40500, 2011), new CarModel("R8", 3000, 48000, 2015)),
             new Brand(BrandTypes.FERRARI.toString()), List.of(new CarModel("488", 100, 90000, 2003), new CarModel("F8", 10000, 80000, 2012)),
             new Brand(BrandTypes.PORSCHE.toString()), List.of(new CarModel("911", 400, 100000, 2000), new CarModel("Panamera", 500, 95000, 2015), new CarModel("Cayenne", 2000, 75000, 2002)));
 
-    public static String brandMatch(Brand brandInput, Map<Brand, List<CarModel>> brandMap) throws Exception {
+    public String brandMatch(Brand brandInput, Map<Brand, List<CarModel>> brandMap) throws Exception {
 
         Scanner scanner = new Scanner(System.in);
         List<String> lowerCaseBrands = new ArrayList<>();
@@ -34,7 +34,7 @@ public class CarService {
     }
 
     // method takes brand user input and matches it to key in brandMap to show list of car models
-    public static List<CarModel> showCarModels(String brandMatchOutput) throws Exception {
+    public List<CarModel> showCarModels(String brandMatchOutput) throws Exception {
 
         Brand brandOutput = new Brand();
         brandOutput.setBrandName(brandMatchOutput);
@@ -47,7 +47,7 @@ public class CarService {
     }
 
     // checks if chosen car model is in list of car models
-    public static CarModel checkCarModel(String chosenBrand, String chosenModel) throws Exception {
+    public CarModel checkCarModel(String chosenBrand, String chosenModel) throws Exception {
 
         List<CarModel> listOfModels = showCarModels(chosenBrand);
         CarModel existingModel = null;
@@ -63,7 +63,7 @@ public class CarService {
         return existingModel;
     }
 
-    public static List<CarModel> sortCars(String sortChoice, String brandName) throws Exception {
+    public List<CarModel> sortCars(String sortChoice, String brandName) throws Exception {
 
         List<CarModel> listOfModels = showCarModels(brandName);
         switch (sortChoice) {
@@ -96,7 +96,7 @@ public class CarService {
         return listOfModels;
     }
 
-    public static List<String> printListOfBrands(){
+    public List<String> printListOfBrands(){
         List<String> listOfBrands = new ArrayList<>();
         for (Brand key : brandMap.keySet()) {
             String nameOfBrand;
@@ -111,7 +111,7 @@ public class CarService {
         return listOfBrands;
     }
 
-    public static void chooseToSortBrands(String userChoice){
+    public void chooseToSortBrands(String userChoice){
         if (userChoice.equals("yes")||userChoice.equals("y")) {
             System.out.println("Please select a brand:");
             List<String> listOfBrands = printListOfBrands();
@@ -123,7 +123,7 @@ public class CarService {
         }
     }
 
-    public static CarModel filterCarModel(String brandMatchOutput, String carModel) throws Exception {
+    public CarModel filterCarModel(String brandMatchOutput, String carModel) throws Exception {
         return showCarModels(brandMatchOutput).stream()
                 .filter(currentCarModel -> currentCarModel.getCarModelName().equals(carModel)).findFirst().orElseThrow(Exception::new);
     }

@@ -3,14 +3,21 @@ import org.junit.jupiter.api.Test;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import org.mockito.Mockito.*;
+
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 
 public class CarServiceTest {
 
+
     Customer customer = new Customer();
+    CarService carService = new CarService();
     Brand brand = new Brand();
     Map<Brand, List<CarModel>> brandMap = Map.of(new Brand("bmw"), List.of(new CarModel("X5", 5000, 28000, 2019), new CarModel("X6", 1000, 20000, 2020)),
             new Brand("tesla"), List.of(new CarModel("S", 2000, 50000, 2020), new CarModel("X", 100, 40000, 2021), new CarModel("3", 45000, 55000, 2022)),
@@ -27,11 +34,9 @@ public class CarServiceTest {
     }
 
     @Test
-    public void newBrandName(){
-        //view the correct brands
-        //Asks for a new brand name
-        //go into brandmatch
-        //return the name
+    public void testBrandMatch() throws Exception {
+
+
     }
 
     @Test
@@ -45,26 +50,26 @@ public class CarServiceTest {
 
     @Test
     public void testEmptyList() throws Exception {
-        assertThat(CarService.brandMap.size()).isGreaterThan(0);
+        assertThat(carService.brandMap.size()).isGreaterThan(0);
     }
 
     @Test
     public void testBrandList() throws Exception {
         brand.setBrandName("hfrukdk");
-        assertThat(CarService.brandMap.get(brand.getBrandName()));
+        assertThat(carService.brandMap.get(brand.getBrandName()));
     }
 
     //to check car model list is not empty - To do
     @Test
     public void testCarModelListIsEmpty() throws Exception {
         Map<Brand, List<CarModel>> brandMap = Map.of(new Brand("bmw"), List.of(new CarModel("X5"), new CarModel("X6")), new Brand("tesla"), List.of(new CarModel("S"), new CarModel("3")));
-        assertThat(CarService.showCarModels("bmw")).size().isGreaterThan(0);
+        assertThat(carService.showCarModels("bmw")).size().isGreaterThan(0);
 
     }
 
     @Test
     public void testChosenModelIsInModelList() throws Exception {
-        List<CarModel> listOfModels = CarService.showCarModels("bmw");
+        List<CarModel> listOfModels = carService.showCarModels("bmw");
         assertEquals(2, listOfModels.size());
         assertEquals("X5", listOfModels.get(0).getCarModel());
         assertEquals("X6", listOfModels.get(1).getCarModel());
@@ -73,13 +78,13 @@ public class CarServiceTest {
 
     @Test
     public void testChosenModelIsValid() throws Exception {
-        assertThrows(Exception.class, () -> CarService.showCarModels("ew"));
+        assertThrows(Exception.class, () -> carService.showCarModels("ew"));
     }
 
     @Test
     public void testSortBrandsAlphabetically() throws Exception {
 
-        List<String> listOfBrands = CarService.printListOfBrands();
+        List<String> listOfBrands = carService.printListOfBrands();
         Collections.sort(listOfBrands);
 
         assertEquals(6, listOfBrands.size());
@@ -92,7 +97,7 @@ public class CarServiceTest {
     public void testSortMileage() throws Exception {
         brand.setBrandName("bmw");
 
-        List<CarModel> listOfModels = CarService.showCarModels(brand.getBrandName());
+        List<CarModel> listOfModels = carService.showCarModels(brand.getBrandName());
 
         List<CarModel> sortedCarModel = listOfModels.stream()
                 .sorted(Comparator.comparingInt(CarModel::getMileage))
@@ -106,7 +111,7 @@ public class CarServiceTest {
     @Test
     public void testSortPrice() throws Exception {
         brand.setBrandName("bmw");
-        List<CarModel> listOfModels = CarService.showCarModels(brand.getBrandName());
+        List<CarModel> listOfModels = carService.showCarModels(brand.getBrandName());
 
         List<CarModel> sortedCarPrice = listOfModels.stream()
                 .sorted(Comparator.comparingDouble(CarModel::getPrice))
@@ -119,7 +124,7 @@ public class CarServiceTest {
     @Test
     public void testSortYear() throws Exception {
         brand.setBrandName("bmw");
-        List<CarModel> listOfModels = CarService.showCarModels(brand.getBrandName());
+        List<CarModel> listOfModels = carService.showCarModels(brand.getBrandName());
 
         List<CarModel> sortedCarYear = listOfModels.stream()
                 .sorted(Comparator.comparingInt(CarModel::getYear))
