@@ -91,7 +91,7 @@ public class CarService {
             case "n":
             case "no":
                 for (CarModel model : showCarModels(brandName)) {
-                    System.out.println(model.getCarModelName());
+                    System.out.println(model.toString());
                 }
                 break;
         }
