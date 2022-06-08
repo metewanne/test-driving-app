@@ -27,7 +27,7 @@ public class Application {
         Brand chosenBrand = new Brand();
         String brandInput = customerInput.next();
         chosenBrand.setBrandName(brandInput);
-        String brandName = carService.brandMatch(chosenBrand, carService.brandMap);
+        String brandName = carService.brandMatch(chosenBrand, customerInput);
 
         System.out.println("\n" + "Do you want to sort the cars by mileage or price or year? If not, please type no");
         String sortChoice = customerInput.next().toLowerCase();
@@ -36,7 +36,15 @@ public class Application {
         String modelChoice = customerInput.next();
         CarModel model = new CarModel();
         model.setCarModelName(modelChoice);
-        System.out.println(carService.checkCarModel(brandName, modelChoice));
+
+        System.out.println("\n" + "Do you want to confirm booking for " + brandName + " " + carService.checkCarModel(brandName, modelChoice) + "?");
+        String confirmationChoice = customerInput.next();
+
+
+
+
+
+
 
     }
 }
