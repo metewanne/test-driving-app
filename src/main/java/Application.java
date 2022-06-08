@@ -39,6 +39,7 @@ public class Application {
 
         System.out.println("\n" + "Do you want to confirm booking for " + brandName + " " + carService.checkCarModel(brandName, modelChoice) + "?");
         String confirmationChoice = customerInput.next();
+        carService.confirmBooking(confirmationChoice);
 
 
 

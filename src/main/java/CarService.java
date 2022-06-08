@@ -130,15 +130,16 @@ public class CarService {
                 .filter(currentCarModel -> currentCarModel.getCarModelName().equals(carModel)).findFirst().orElseThrow(Exception::new);
     }
 
-    public String confirmBooking (String confirmationChoice, Scanner scanner) {
+    public void confirmBooking (String confirmationChoice) {
         if (confirmationChoice.equals("yes")||confirmationChoice.equals("y")) {
             System.out.println("Booking confirmed");
         } else if (confirmationChoice.equals("no")||confirmationChoice.equals("n")) {
             System.out.println("Please select another model" + "\n");
-            brandMap.forEach((key, value) -> System.out.println(key.getBrandName() + " : " + value.stream().map(CarModel::getCarModelName).collect(toList())));
+            getBrandMap().forEach((key, value) -> System.out.println(key.getBrandName() + " : " + value.stream().map(CarModel::getCarModelName).collect(toList())));
+
 
         }
-        return;
+
     }
 
 //
