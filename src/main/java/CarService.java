@@ -27,7 +27,7 @@ public class CarService {
 
             System.out.println();
             System.out.println("Car brand is not available - please select your new brand");
-            String newBrandSelection = scanner.nextLine();
+            String newBrandSelection = scanner.next();
             brandInput.setBrandName(newBrandSelection);
 
         }
@@ -125,39 +125,39 @@ public class CarService {
         }
     }
 
+    //Allows the user to select the car brand and model
+    public CarModel selectCarBooking(Scanner customerInput) throws Exception {
+
+        System.out.println("Do you want to see the brands in alphabetic order?");
+        String userChoice = customerInput.next().toLowerCase();
+        chooseToSortBrands(userChoice);
+
+        Brand chosenBrand = new Brand();
+        String brandInput = customerInput.next();
+        chosenBrand.setBrandName(brandInput);
+        String brandName = brandMatch(chosenBrand, customerInput);
+
+        System.out.println("\n" + "Do you want to sort the cars by mileage or price or year? If not, please type no");
+        String sortChoice = customerInput.next().toLowerCase();
+        System.out.println("Please select a car model:");
+        sortCars(sortChoice, brandName);
+        String modelChoice = customerInput.next();
+        CarModel model = new CarModel();
+        model.setCarModelName(modelChoice);
+        model.setBrand(brandName);
+
+        return model;
+    }
+
+    //Confirms the customers car booking
+    public void confirmBooking (String confirmationChoice) {
+        if (confirmationChoice.equals("yes")||confirmationChoice.equals("y")) {
+            System.out.println("Booking confirmed");
+        }
+    }
+
     public CarModel filterCarModel(String brandMatchOutput, String carModel) throws Exception {
         return showCarModels(brandMatchOutput).stream()
                 .filter(currentCarModel -> currentCarModel.getCarModelName().equals(carModel)).findFirst().orElseThrow(Exception::new);
     }
-
-    public void confirmBooking (String confirmationChoice) {
-        if (confirmationChoice.equals("yes")||confirmationChoice.equals("y")) {
-            System.out.println("Booking confirmed");
-        } else if (confirmationChoice.equals("no")||confirmationChoice.equals("n")) {
-            System.out.println("Please select another model" + "\n");
-            getBrandMap().forEach((key, value) -> System.out.println(key.getBrandName() + " : " + value.stream().map(CarModel::getCarModelName).collect(toList())));
-
-
-        }
-
-    }
-
-//
-//    public static String checkBrands(String brandInput) throws Exception {
-//        if (brandInput.equals("bmw")){
-//            Brand chosenBrand = new Brand();
-//            String input = customerInput.next();
-//            chosenBrand.setBrandName(input);
-//            String brandName = brandMatch(chosenBrand, brandMap);
-//        } else {
-//            System.out.println("\n" + "Please select a brand from the list");
-//            Brand chosen = new Brand();
-//            String input = customerInput.next();
-//            chosen.setBrandName(input);
-//            String brandName = brandMatch(chosen, brandMap);
-//
-//        }
-//    }
-
-
 }

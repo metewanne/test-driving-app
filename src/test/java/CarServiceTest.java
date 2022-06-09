@@ -163,18 +163,25 @@ public class CarServiceTest {
         System.out.println(sortedModelsByYear);
     }
 
-//    @Test
-//    public void testSortYear() throws Exception {
-//        brand.setBrandName("bmw");
-//        List<CarModel> listOfModels = carService.showCarModels(brand.getBrandName());
-//
-//        List<CarModel> sortedCarYear = listOfModels.stream()
-//                .sorted(Comparator.comparingInt(CarModel::getYear))
-//                .collect(Collectors.toList());
-//
-//        assertEquals(2019, sortedCarYear.get(0).getYear());
-//        assertEquals(2020, sortedCarYear.get(1).getYear());
-//    }
+
+    @Test
+    public void testConfirmBooking() throws Exception {
+
+
+        // given, when, then - Advised utilise cucumber testing as it will make testing easier
+
+
+
+    }
+
+    @Test
+    public void testselectCarBooking(){
+
+        // given, when, then - Advised utilise cucumber testing as it will make testing easier
+
+
+    }
+
 
     }
 

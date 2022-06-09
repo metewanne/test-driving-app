@@ -7,6 +7,7 @@ public class Application {
         CarService carService = new CarService();
         Customer customer = new Customer();
 
+        //name mention
         Scanner customerInput = new Scanner(System.in);
         System.out.println("Enter first name");
         String firstName = customerInput.next();
@@ -20,32 +21,20 @@ public class Application {
         String email = customerInput.next();
         customer.patternMatches(email, "^(.+)@(\\S+)$");
 
-        System.out.println("Do you want to see the brands in alphabetic order?");
-        String userChoice = customerInput.next().toLowerCase();
-        carService.chooseToSortBrands(userChoice);
+        String customerChoice;
+        CarModel selectedCar;
+        do {
+            selectedCar = carService.selectCarBooking(customerInput);
+            System.out.println("\n" + "Do you want to confirm booking for " + selectedCar.getBrand() + " " + carService.checkCarModel(selectedCar.getBrand(), selectedCar.getCarModel()) + "?");
+            customerChoice = customerInput.next();
+        } while (customerChoice.equals("no") || customerChoice.equals("n"));
 
-        Brand chosenBrand = new Brand();
-        String brandInput = customerInput.next();
-        chosenBrand.setBrandName(brandInput);
-        String brandName = carService.brandMatch(chosenBrand, customerInput);
-
-        System.out.println("\n" + "Do you want to sort the cars by mileage or price or year? If not, please type no");
-        String sortChoice = customerInput.next().toLowerCase();
-        System.out.println("Please select a car model:");
-        carService.sortCars(sortChoice, brandName);
-        String modelChoice = customerInput.next();
-        CarModel model = new CarModel();
-        model.setCarModelName(modelChoice);
-
-        System.out.println("\n" + "Do you want to confirm booking for " + brandName + " " + carService.checkCarModel(brandName, modelChoice) + "?");
-        String confirmationChoice = customerInput.next();
-        carService.confirmBooking(confirmationChoice);
-
-
-
-
+        carService.confirmBooking(customerChoice);
 
 
 
     }
-}
+
+
+
+    }

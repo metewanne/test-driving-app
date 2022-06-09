@@ -4,6 +4,7 @@ public class CarModel {
     private int mileage;
     private double price;
     private int year;
+    private String brand;
 
 
     public CarModel() {
@@ -51,6 +52,14 @@ public class CarModel {
 
     public int getYear() {
         return year;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
     }
 
     public void setYear(int year) {
