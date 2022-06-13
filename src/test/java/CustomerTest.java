@@ -22,6 +22,11 @@ public class CustomerTest {
     }
 
     @Test
+    public void testInputInWrongCharacters() {
+        assertThrows(Exception.class, () -> customer.inputCustomerName("ss@ss?!"));
+    }
+
+    @Test
     public void testUsingSimpleRegex() throws Exception {
         String emailAddress = "username@domain.com";
         String regexPattern = "^(.+)@(\\S+)$";

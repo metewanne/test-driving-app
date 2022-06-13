@@ -114,14 +114,21 @@ public class CarService {
     }
 
     public void chooseToSortBrands(String userChoice){
+        Scanner customerInput = new Scanner(System.in);
+        //Brand sortedBrand = new Brand();
+
         if (userChoice.equals("yes")||userChoice.equals("y")) {
             System.out.println("Please select a brand:");
             List<String> listOfBrands = printListOfBrands();
             Collections.sort(listOfBrands);
-            Brand.printBrands(listOfBrands);
         } else if (userChoice.equals("no")||userChoice.equals("n")) {
             System.out.println("Please select a brand:");
             Brand.printBrands(printListOfBrands());
+        } else {
+            System.out.println("Invalid input - You can only write y/yes or n/no.");
+            System.out.println("Do you want to see the brands in alphabetic order?");
+            String userSecondChoice = customerInput.next().toLowerCase();
+            chooseToSortBrands(userSecondChoice);
         }
     }
 

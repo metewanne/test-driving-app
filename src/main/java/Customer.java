@@ -7,6 +7,8 @@ public class Customer {
 
         if (customerName == null || customerName.trim().equals("")) {
             throw new Exception("Empty input");
+        } else if (!customerName.chars().allMatch(Character::isLetter)) {
+            throw new Exception("Incorrect characters submitted");
         }
         char[] letters = customerName.toCharArray();
         for (char c : letters) {
