@@ -60,8 +60,17 @@ public class CarService {
             }
         }
         if (existingModel == null) {
-            throw new Exception("model does not exist");
+            System.out.println("Incorrect car model. Please select model from the list above.");
+            Scanner secondModelInput = new Scanner(System.in);
+            String secondChoice = secondModelInput.next();
+            existingModel = checkCarModel(chosenBrand, secondChoice);
+
+
+
+
+
         }
+
         return existingModel;
     }
 
