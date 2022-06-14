@@ -7,25 +7,30 @@ public class CustomerTest {
     Customer customer = new Customer();
 
     //test that it's not null
+    @Test
+    public void testNullInput() {
+        assertThrows(Exception.class, () -> customer.inputCustomerName(null));
+    }
+
     //test that it's not empty
-    //test that it's not an int
-    //test that the correct input is given
     @Test
     public void testEmptyInput() {
         assertThrows(Exception.class, () -> customer.inputCustomerName(""));
     }
 
-
+    //test that it's not an int
     @Test
     public void testInputIsInt() {
         assertThrows(Exception.class, () -> customer.inputCustomerName("123"));
     }
 
+    //test that it doesn't contain special characters
     @Test
-    public void testInputInWrongCharacters() {
+    public void testInputContainsSpecialCharacters() {
         assertThrows(Exception.class, () -> customer.inputCustomerName("ss@ss?!"));
     }
 
+    //test that the correct input is given
     @Test
     public void testUsingSimpleRegex() throws Exception {
         String emailAddress = "username@domain.com";
