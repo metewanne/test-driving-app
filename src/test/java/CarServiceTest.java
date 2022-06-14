@@ -3,13 +3,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import java.security.Key;
 import java.util.*;
-import java.util.stream.Collectors;
-
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -22,6 +17,7 @@ public class CarServiceTest {
 
     Customer customer;
     CarService carService;
+    Scanner customerInput = new Scanner(System.in);
 
     @Mock
     Brand brand;
@@ -41,7 +37,7 @@ public class CarServiceTest {
 
     /*
     Methods should have their own initialised object for each test - Instead of creating an object for each method you
-    can declare the instance and create a method to assign an new object to the instance.
+    can declare the instance and create a method to assign a new object to the instance.
 
     @Before Each will initiate a new object for each test method in the test class. No longer need to initialise the
     object in each test method and stops duplication.
@@ -77,19 +73,12 @@ public class CarServiceTest {
 
     @Test
     public void incorrectBrandMatchInput() throws Exception {
-//        when(scanner.nextLine()).thenReturn("bmw");
         when(brand.getBrandName()).thenReturn("invalid brand").thenReturn("audi");
         Scanner scanner = new Scanner("audi");
         String returnValue = carService.brandMatch(brand, scanner);
         assertEquals("audi", returnValue);
         verify(brand, times(1)).setBrandName("audi");
     }
-
-//    @Test
-//    public void testBrandList() throws Exception {
-//        brand.setBrandName("hfrukdk");
-//        assertThat(carService.getBrandMap().get(brand.getBrandName()).toString());
-//    }
 
     //to check car model list is not empty - To do
     @Test
@@ -163,25 +152,14 @@ public class CarServiceTest {
         System.out.println(sortedModelsByYear);
     }
 
-
+    // test that checks that a car is removed from list
     @Test
-    public void testConfirmBooking() throws Exception {
-
-
-        // given, when, then - Advised utilise cucumber testing as it will make testing easier
-
-
-
+    public void testThatCarIsRemovedFromAvailabilityList() throws Exception {
+        List<CarModel> listWithoutSelectedCar = carService.removeCarModelFromAvailabilityList("bmw", "x5");
+        fail();
     }
 
-    @Test
-    public void testselectCarBooking(){
-
-        // given, when, then - Advised utilise cucumber testing as it will make testing easier
-
-
-    }
-
+    // test that checks that the confirmed car is added to new list
 
     }
 

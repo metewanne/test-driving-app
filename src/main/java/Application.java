@@ -25,7 +25,8 @@ public class Application {
         CarModel selectedCar;
         do {
             selectedCar = carService.selectCarBooking(customerInput);
-            System.out.println("\n" + "Do you want to confirm booking for " + selectedCar.getBrand() + " " + carService.checkCarModel(selectedCar.getBrand(), selectedCar.getCarModel()) + "?");
+            System.out.println("\n" + "Do you want to confirm booking for " + selectedCar.getBrand() + " " +
+                    carService.checkCarModel(selectedCar.getBrand(), selectedCar.getCarModel()) + "?");
             customerChoice = customerInput.next();
         } while (customerChoice.equals("no") || customerChoice.equals("n"));
 

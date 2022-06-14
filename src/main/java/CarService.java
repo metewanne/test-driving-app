@@ -64,11 +64,6 @@ public class CarService {
             Scanner secondModelInput = new Scanner(System.in);
             String secondChoice = secondModelInput.next();
             existingModel = checkCarModel(chosenBrand, secondChoice);
-
-
-
-
-
         }
 
         return existingModel;
@@ -124,8 +119,6 @@ public class CarService {
 
     public void chooseToSortBrands(String userChoice){
         Scanner customerInput = new Scanner(System.in);
-        //Brand sortedBrand = new Brand();
-
         if (userChoice.equals("yes")||userChoice.equals("y")) {
             System.out.println("Please select a brand:");
             List<String> listOfBrands = printListOfBrands();
@@ -175,5 +168,10 @@ public class CarService {
     public CarModel filterCarModel(String brandMatchOutput, String carModel) throws Exception {
         return showCarModels(brandMatchOutput).stream()
                 .filter(currentCarModel -> currentCarModel.getCarModelName().equals(carModel)).findFirst().orElseThrow(Exception::new);
+    }
+
+    public List<CarModel> removeCarModelFromAvailabilityList(String brandName, String carModel) throws Exception {
+        List<CarModel> listWithoutSelectedCar = showCarModels(carModel).remove(brandName);
+        return listWithoutSelectedCar;
     }
 }
