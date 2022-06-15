@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Application {
@@ -32,9 +34,11 @@ public class Application {
 
         carService.confirmBooking(customerChoice);
 
-        System.out.println(selectedCar);
-
+//        System.out.println(selectedCar);
+//
         carService.removeCarModelFromAvailabilityList(selectedCar);
+
+
 
 
 

@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class CarModel {
 
     private String carModelName;
@@ -64,6 +66,14 @@ public class CarModel {
 
     public void setYear(int year) {
         this.year = year;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CarModel carModel = (CarModel) o;
+        return Objects.equals(carModelName, carModel.carModelName);
     }
 
     @Override

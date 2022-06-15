@@ -6,12 +6,13 @@ import static java.util.stream.Collectors.toList;
 
 public class CarService {
 
-    private Map<Brand, List<CarModel>> brandMap = Map.of(new Brand(BrandTypes.BMW.toString()), List.of(new CarModel("X5", 5000, 28000, 2019), new CarModel("X6", 1000, 20000, 2020)),
+    private final Map<Brand, List<CarModel>> brandMap = new HashMap<> ( Map.of(new Brand(BrandTypes.BMW.toString()), List.of(new CarModel("X5", 5000, 28000, 2019), new CarModel("X6", 1000, 20000, 2020)),
             new Brand(BrandTypes.TESLA.toString()), List.of(new CarModel("S", 2000, 50000, 2020), new CarModel("X", 100, 40000, 2021), new CarModel("3", 45000, 55000, 2022)),
             new Brand(BrandTypes.MERCEDES.toString()), List.of(new CarModel("A-Class", 500, 30000, 2010), new CarModel(("E-Class"), 14000, 15000, 2016)),
             new Brand(BrandTypes.AUDI.toString()), List.of(new CarModel("A3", 1000, 65000, 2005), new CarModel("Q5", 5000, 40500, 2011), new CarModel("R8", 3000, 48000, 2015)),
             new Brand(BrandTypes.FERRARI.toString()), List.of(new CarModel("488", 100, 90000, 2003), new CarModel("F8", 10000, 80000, 2012)),
-            new Brand(BrandTypes.PORSCHE.toString()), List.of(new CarModel("911", 400, 100000, 2000), new CarModel("Panamera", 500, 95000, 2015), new CarModel("Cayenne", 2000, 75000, 2002)));
+            new Brand(BrandTypes.PORSCHE.toString()), List.of(new CarModel("911", 400, 100000, 2000), new CarModel("Panamera", 500, 95000, 2015), new CarModel("Cayenne", 2000, 75000, 2002))));
+
 
     public Map<Brand, List<CarModel>> getBrandMap() {
         return brandMap;
@@ -173,29 +174,21 @@ public class CarService {
     }
 
 
-    public static <K, V> Stream<Map.Entry<K, V>>
-    convertMapToStream(Map<K, V> map) {
-
-        // Return the obtained Stream
-        return map
-
-                // Convert the Map to Set
-                .entrySet()
-
-                // Convert the Set to Stream
-                .stream();
-    }
-
     public void removeCarModelFromAvailabilityList(CarModel selectedCar) throws Exception {
 
 
-//        for (var entry : brandMap.entrySet()) {
-//            if(entry.getKey().getBrandName().equals(selectedCar.getBrand())){
-//                brandMap.entrySet().remove(entry.getKey());
-//            }
-//            System.out.println(entry.getKey().getBrandName() + "\n" + entry.getValue());
-//        }
+        for (var entry : brandMap.entrySet()) {
+            if(entry.getKey().getBrandName().equals(selectedCar.getBrand())){
+                List<CarModel> carModelList = brandMap.get(entry.getKey());
+                System.out.println(carModelList);
+                carModelList = carModelList.stream().filter(x -> !x.getCarModelName().toLowerCase().equals(selectedCar.getCarModelName().toLowerCase())).collect(Collectors.toList());
+                brandMap.put(entry.getKey(), carModelList);
+                System.out.println(carModelList);
+            }
 
+        }
+//
+        System.out.println(brandMap);
 
 //
 //        // Print the Map
@@ -219,9 +212,18 @@ public class CarService {
 //
 //        System.out.println(entriesStream.filter(x -> !x.getValue().contains(selectedCar)).collect(Collectors.toList()));
 
-        brandMap.entrySet().removeIf(e -> e.getValue().contains(selectedCar.getCarModelName()));
+//        brandMap.entrySet().removeIf(e -> e.getValue().contains(selectedCar.getCarModelName()));
 
-        System.out.println(brandMap);
+//        System.out.println(brandMap);
+
+//        List<Map<Brand, List<CarModel>>> list = new ArrayList<>();
+//        list.add((brandMap));
+//
+//        List<Map<Brand, List<CarModel>>> result = list.stream()
+//                .filter(x -> x.entrySet().removeIf(y -> y.getValue().equals(selectedCar.getCarModelName())))
+//                .collect(Collectors.toList());
+//
+//        System.out.println(result);
 
 
 
