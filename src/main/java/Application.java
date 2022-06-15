@@ -32,6 +32,10 @@ public class Application {
 
         carService.confirmBooking(customerChoice);
 
+        System.out.println(selectedCar);
+
+        carService.removeCarModelFromAvailabilityList(selectedCar);
+
 
 
     }

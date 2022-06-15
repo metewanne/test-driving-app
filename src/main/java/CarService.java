@@ -1,4 +1,6 @@
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
 
@@ -102,7 +104,7 @@ public class CarService {
         return listOfModels;
     }
 
-    public List<String> printListOfBrands(){
+    public List<String> printListOfBrands() {
         List<String> listOfBrands = new ArrayList<>();
         for (Brand key : brandMap.keySet()) {
             String nameOfBrand;
@@ -117,13 +119,13 @@ public class CarService {
         return listOfBrands;
     }
 
-    public void chooseToSortBrands(String userChoice){
+    public void chooseToSortBrands(String userChoice) {
         Scanner customerInput = new Scanner(System.in);
-        if (userChoice.equals("yes")||userChoice.equals("y")) {
+        if (userChoice.equals("yes") || userChoice.equals("y")) {
             System.out.println("Please select a brand:");
             List<String> listOfBrands = printListOfBrands();
             Collections.sort(listOfBrands);
-        } else if (userChoice.equals("no")||userChoice.equals("n")) {
+        } else if (userChoice.equals("no") || userChoice.equals("n")) {
             System.out.println("Please select a brand:");
             Brand.printBrands(printListOfBrands());
         } else {
@@ -159,8 +161,8 @@ public class CarService {
     }
 
     //Confirms the customers car booking
-    public void confirmBooking (String confirmationChoice) {
-        if (confirmationChoice.equals("yes")||confirmationChoice.equals("y")) {
+    public void confirmBooking(String confirmationChoice) {
+        if (confirmationChoice.equals("yes") || confirmationChoice.equals("y")) {
             System.out.println("Booking confirmed");
         }
     }
@@ -170,8 +172,59 @@ public class CarService {
                 .filter(currentCarModel -> currentCarModel.getCarModelName().equals(carModel)).findFirst().orElseThrow(Exception::new);
     }
 
-    public List<CarModel> removeCarModelFromAvailabilityList(String brandName, String carModel) throws Exception {
-        List<CarModel> listWithoutSelectedCar = showCarModels(carModel).remove(brandName);
-        return listWithoutSelectedCar;
+
+    public static <K, V> Stream<Map.Entry<K, V>>
+    convertMapToStream(Map<K, V> map) {
+
+        // Return the obtained Stream
+        return map
+
+                // Convert the Map to Set
+                .entrySet()
+
+                // Convert the Set to Stream
+                .stream();
+    }
+
+    public void removeCarModelFromAvailabilityList(CarModel selectedCar) throws Exception {
+
+
+//        for (var entry : brandMap.entrySet()) {
+//            if(entry.getKey().getBrandName().equals(selectedCar.getBrand())){
+//                brandMap.entrySet().remove(entry.getKey());
+//            }
+//            System.out.println(entry.getKey().getBrandName() + "\n" + entry.getValue());
+//        }
+
+
+//
+//        // Print the Map
+//        System.out.println("Map: " + brandMap.entrySet().removeIf(car -> !selectedCar.equals(car)));
+//
+//        // Convert the Map to Stream
+//        Stream<Map.Entry<Brand, List<CarModel>> > stream =
+//                convertMapToStream(brandMap);
+//        // Print the TreeMap
+//        System.out.println("Stream: "
+//                + stream.filter(car -> !selectedCar.equals(car)).collect(Collectors.toList()));
+//
+//        for(Iterator<Brand, List<CarModel>> iterator = brandMap.keySet().iterator(); iterator.hasNext(); ) {
+//            Integer key = iterator.next();
+//            if(key != 1) {
+//                iterator.remove();
+//            }
+
+//        Set<Map.Entry<Brand, List<CarModel>>> entries = brandMap.entrySet();
+//        Stream<Map.Entry<Brand, List<CarModel>>> entriesStream = entries.stream();
+//
+//        System.out.println(entriesStream.filter(x -> !x.getValue().contains(selectedCar)).collect(Collectors.toList()));
+
+        brandMap.entrySet().removeIf(e -> e.getValue().contains(selectedCar.getCarModelName()));
+
+        System.out.println(brandMap);
+
+
+
+
     }
 }
