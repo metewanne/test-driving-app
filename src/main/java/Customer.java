@@ -1,28 +1,25 @@
+import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class Customer {
 
+    Scanner scan = new Scanner(System.in);
+
     //Changed from return type of String to void because it does not return anything
-    public void inputCustomerName(String customerName) throws Exception {
+    public String inputCustomerName(String customerName){
 
-        if (customerName == null || customerName.trim().equals("")) {
-            throw new Exception("Empty input");
-        } else if (!customerName.chars().allMatch(Character::isLetter)) {
-            throw new Exception("Incorrect characters submitted");
+        while (customerName == null || customerName.trim().equals("") || !customerName.chars().allMatch(Character::isLetter)){
+            System.out.println("Incorrect input, please enter a valid name");
+            customerName = scan.next();
         }
-        char[] letters = customerName.toCharArray();
-        for (char c : letters) {
-            if (Character.isDigit(c)) {
-                throw new Exception("Incorrect type of input");
-            }
-        }
-
+        return customerName;
     }
 
-    public boolean patternMatches(String emailAddress, String regexPattern) throws Exception {
+    public boolean patternMatches(String emailAddress, String regexPattern) {
 
-        if (!emailAddress.matches(regexPattern)) {
-            throw new Exception("Invalid email");
+        while (emailAddress == null || !emailAddress.matches(regexPattern)) {
+            System.out.println("Invalid email, please input again");
+            emailAddress = scan.next();
         }
         return Pattern.compile(regexPattern)
                 .matcher(emailAddress)
