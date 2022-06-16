@@ -25,7 +25,8 @@ public class CarService {
         }
         while (!lowerCaseBrands.contains(brandInput.getBrandName().toLowerCase())) {
             System.out.println("Here is a list of all available cars:" + "\n");
-            brandMap.forEach((key, value) -> System.out.println(key.getBrandName() + " : " + value.stream().map(CarModel::getCarModelName).collect(toList())));
+            brandMap.forEach((key, value) -> System.out.println(key.getBrandName() + " : " + value.stream()
+                    .map(CarModel::getCarModelName).collect(toList())));
 
             System.out.println();
             System.out.println("Car brand is not available - please select your new brand");
@@ -180,19 +181,20 @@ public class CarService {
         }
     }
 
-    public CarModel filterCarModel(String brandMatchOutput, String carModel) throws Exception {
-        return showCarModels(brandMatchOutput).stream()
-                .filter(currentCarModel -> currentCarModel.getCarModelName().equals(carModel)).findFirst().orElseThrow(Exception::new);
-    }
-
     public Map<Brand, List<CarModel>> removeCarModelFromList(CarModel selectedCar) {
         for (var entry : brandMap.entrySet()) {
             if(entry.getKey().getBrandName().equals(selectedCar.getBrand())){
                 List<CarModel> carModelList = brandMap.get(entry.getKey());
-                carModelList = carModelList.stream().filter(x -> !x.getCarModelName().equalsIgnoreCase(selectedCar.getCarModelName())).collect(Collectors.toList());
+                carModelList = carModelList.stream().filter(x -> !x.getCarModelName().equalsIgnoreCase(selectedCar.getCarModelName()))
+                        .collect(Collectors.toList());
                 brandMap.put(entry.getKey(), carModelList);
             }
         }
         return brandMap;
     }
+//
+//    public CarModel filterCarModel(String brandMatchOutput, String carModel) throws Exception {
+//        return showCarModels(brandMatchOutput).stream()
+//                .filter(currentCarModel -> currentCarModel.getCarModelName().equals(carModel)).findFirst().orElseThrow(Exception::new);
+//    }
 }
