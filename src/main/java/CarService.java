@@ -161,16 +161,24 @@ public class CarService {
     }
 
     public String confirmationOfCarModel(Scanner customerInput, CarModel selectedCar) throws Exception {
-        String customerChoice;
-        do {
+        String customerChoice = "";
+        boolean selectCarAgain = true;
+        while(selectCarAgain) {
             selectedCar = selectCarBooking(customerInput);
             System.out.println("\n" + "Do you want to confirm booking for " + selectedCar.getBrand() + " " +
                     checkCarModel(selectedCar.getBrand(), selectedCar.getCarModel()) + "?");
             customerChoice = customerInput.next();
-            if (customerChoice.equals("yes")||customerChoice.equals("y")){
-                break;
+
+            switch(customerChoice){
+                case "yes":
+                case "y":
+                    selectCarAgain = false;
+                    break;
+                default:
+                    break;
             }
-        } while (customerChoice.matches("\\b(?!yes|y\\b)\\w+"));
+
+        }
         return customerChoice;
     }
 
