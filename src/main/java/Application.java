@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Application {
@@ -27,9 +25,6 @@ public class Application {
         carService.confirmBooking(choice);
 
         System.out.println(carService.removeCarModelFromList(selectedCar));
-
-
-
 
     }
 

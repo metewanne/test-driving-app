@@ -38,7 +38,4 @@ public class CustomerTest {
         assertTrue(customer.patternMatches(emailAddress, regexPattern));
     }
 
-
-
-
 }
