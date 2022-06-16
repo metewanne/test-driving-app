@@ -147,7 +147,7 @@ public class CarService {
         chosenBrand.setBrandName(brandInput);
         String brandName = brandMatch(chosenBrand, customerInput);
 
-        System.out.println("\n" + "Do you want to sort the cars by mileage or price or year? If not, please type no");
+        System.out.println("\n" + "Do you want to sort the cars by mileage or price or year?");
         String sortChoice = customerInput.next().toLowerCase();
         System.out.println("Please select a car model:");
         sortCars(sortChoice, brandName);
@@ -157,6 +157,20 @@ public class CarService {
         model.setBrand(brandName);
 
         return model;
+    }
+
+    public String confirmationOfCarModel(Scanner customerInput, CarModel selectedCar) throws Exception {
+        String customerChoice;
+        do {
+            selectedCar = selectCarBooking(customerInput);
+            System.out.println("\n" + "Do you want to confirm booking for " + selectedCar.getBrand() + " " +
+                    checkCarModel(selectedCar.getBrand(), selectedCar.getCarModel()) + "?");
+            customerChoice = customerInput.next();
+            if (customerChoice.equals("yes")||customerChoice.equals("y")){
+                break;
+            }
+        } while (customerChoice.matches("\\b(?!yes|y\\b)\\w+"));
+        return customerChoice;
     }
 
     //Confirms the customers car booking

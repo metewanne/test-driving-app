@@ -22,20 +22,9 @@ public class Application {
         String email = customerInput.next();
         customer.patternMatches(email, "^(.+)@(\\S+)$");
 
-        String customerChoice;
-        CarModel selectedCar;
-
-        do {
-            selectedCar = carService.selectCarBooking(customerInput);
-            System.out.println("\n" + "Do you want to confirm booking for " + selectedCar.getBrand() + " " +
-                    carService.checkCarModel(selectedCar.getBrand(), selectedCar.getCarModel()) + "?");
-            customerChoice = customerInput.next();
-            while (!customerChoice.equals("no") || !customerChoice.equals("n") || !customerChoice.equals("yes") || !customerChoice.equals("y")) {
-                System.out.println("Please enter yes or no");
-            }
-        }
-        while (customerChoice.equals("no") || customerChoice.equals("n"));
-        carService.confirmBooking(customerChoice);
+        CarModel selectedCar = new CarModel();
+        String choice = carService.confirmationOfCarModel(customerInput, selectedCar);
+        carService.confirmBooking(choice);
 
         System.out.println(carService.removeCarModelFromList(selectedCar));
 
