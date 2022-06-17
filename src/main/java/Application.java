@@ -18,7 +18,7 @@ public class Application {
 
         System.out.println("Enter email address");
         String email = customerInput.next();
-        customer.patternMatches(email, "^(.+)@(\\S+)$");
+        customer.validateEmail(email);
 
         CarModel selectedCar = new CarModel();
         String choice = carService.confirmationOfCarModel(customerInput, selectedCar);

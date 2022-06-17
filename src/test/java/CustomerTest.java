@@ -1,4 +1,6 @@
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -34,8 +36,11 @@ public class CustomerTest {
     @Test
     public void testUsingSimpleRegex() throws Exception {
         String emailAddress = "username@domain.com";
-        String regexPattern = "^(.+)@(\\S+)$";
-        assertTrue(customer.patternMatches(emailAddress, regexPattern));
+        assertTrue(customer.validateEmail(emailAddress));
     }
+
+    //test that email is not null
+
+
 
 }

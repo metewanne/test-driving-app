@@ -15,8 +15,9 @@ public class Customer {
         return customerName;
     }
 
-    public boolean patternMatches(String emailAddress, String regexPattern) {
+    public boolean validateEmail(String emailAddress) {
 
+        String regexPattern = "^(.+)@(\\S+)$";
         while (emailAddress == null || !emailAddress.matches(regexPattern)) {
             System.out.println("Invalid email, please input again");
             emailAddress = scan.next();

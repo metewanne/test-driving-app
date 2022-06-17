@@ -164,6 +164,12 @@ public class CarServiceTest {
 
     // test that checks that the confirmed car is added to new list
 
+    //test that checks if one of the car models are there
+
+    // test that if selectedCar is not null
+
+
+
     }
 
 
