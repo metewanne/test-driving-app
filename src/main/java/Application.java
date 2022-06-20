@@ -1,3 +1,6 @@
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Application {
@@ -6,7 +9,6 @@ public class Application {
 
         CarService carService = new CarService();
         Customer customer = new Customer();
-
 
         System.out.println(carService.getBrandMap());
         Scanner customerInput = new Scanner(System.in);
@@ -22,9 +24,8 @@ public class Application {
         String email = customerInput.next();
         customer.validateEmail(email);
 
-        CarModel selectedCar = new CarModel();
+        CarModel selectedCar = carService.selectCarBooking(customerInput);
         String choice = carService.confirmationOfCarModel(customerInput, selectedCar);
-        System.out.println(carService.selectCarBooking(customerInput));
         carService.confirmBooking(choice);
         /*
         String choice1 = customerInput.next();

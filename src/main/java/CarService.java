@@ -158,10 +158,12 @@ public class CarService {
         String modelChoice = customerInput.next();
         CarModel model = new CarModel();
         model.setCarModelName(modelChoice);
-        model.setBrand(brandName);
-        //System.out.println(brandMap.get(model.getBrand()));
+        model.setBrandName(brandName);
+        model.setBrand(chosenBrand);
+        List<CarModel> modelsOfSelectedBrand = brandMap.get(model.getBrand());
+        Optional<CarModel> selectedModel = modelsOfSelectedBrand.stream().filter(carModel -> carModel.getCarModelName().equalsIgnoreCase(model.getCarModelName())).findFirst();
+        System.out.println(selectedModel.isPresent());
 
-        //System.out.println(model);
         return model;
     }
 
@@ -171,7 +173,7 @@ public class CarService {
         while(selectCarAgain) {
             selectedCar = selectCarBooking(customerInput);
             System.out.println("\n" + "Do you want to confirm booking for " + selectedCar.getBrand() + " " +
-                    checkCarModel(selectedCar.getBrand(), selectedCar.getCarModel()) + "?");
+                    checkCarModel(selectedCar.getBrandName(), selectedCar.getCarModel()) + "?");
             customerChoice = customerInput.next();
 
             switch(customerChoice){
