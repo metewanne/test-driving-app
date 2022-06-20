@@ -122,9 +122,12 @@ public class CarService {
     public void chooseToSortBrands(String userChoice) {
         Scanner customerInput = new Scanner(System.in);
         if (userChoice.equals("yes") || userChoice.equals("y")) {
-            System.out.println("Please select a brand:");
+            System.out.println("Please select a brand: " );
             List<String> listOfBrands = printListOfBrands();
             Collections.sort(listOfBrands);
+            for (String brand: listOfBrands){
+                System.out.println(brand);
+            }
         } else if (userChoice.equals("no") || userChoice.equals("n")) {
             System.out.println("Please select a brand:");
             Brand.printBrands(printListOfBrands());
@@ -156,7 +159,9 @@ public class CarService {
         CarModel model = new CarModel();
         model.setCarModelName(modelChoice);
         model.setBrand(brandName);
+        //System.out.println(brandMap.get(model.getBrand()));
 
+        //System.out.println(model);
         return model;
     }
 
@@ -176,8 +181,7 @@ public class CarService {
                     break;
                 default:
                     break;
-            }
-
+                }
         }
         return customerChoice;
     }
@@ -199,6 +203,12 @@ public class CarService {
             }
         }
         return brandMap;
+    }
+
+    public List<CarModel> addToBookingList(CarModel selectedCar){
+        List<CarModel> bookingList = new ArrayList<>();
+        bookingList.add(selectedCar);
+        return bookingList;
     }
 //
 //    public CarModel filterCarModel(String brandMatchOutput, String carModel) throws Exception {

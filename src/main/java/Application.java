@@ -7,6 +7,8 @@ public class Application {
         CarService carService = new CarService();
         Customer customer = new Customer();
 
+
+        System.out.println(carService.getBrandMap());
         Scanner customerInput = new Scanner(System.in);
         System.out.println("Enter first name");
         String firstName = customerInput.next();
@@ -22,9 +24,19 @@ public class Application {
 
         CarModel selectedCar = new CarModel();
         String choice = carService.confirmationOfCarModel(customerInput, selectedCar);
+        System.out.println(carService.selectCarBooking(customerInput));
         carService.confirmBooking(choice);
+        /*
+        String choice1 = customerInput.next();
+        CarModel selectedCar = (CarModel) carService.getBrandMap().get(choice1);
+        System.out.println(selectedCar);
+        String choice = carService.confirmationOfCarModel(customerInput, selectedCar);
+        carService.confirmBooking(choice);
+        */
 
+        System.out.println(selectedCar);
         System.out.println(carService.removeCarModelFromList(selectedCar));
+        System.out.println(carService.addToBookingList(selectedCar));
 
     }
 

@@ -64,10 +64,6 @@ public class CarModel {
         this.brand = brand;
     }
 
-    public void setYear(int year) {
-        this.year = year;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
