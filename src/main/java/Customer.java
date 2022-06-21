@@ -1,3 +1,5 @@
+import org.junit.platform.commons.util.StringUtils;
+
 import java.util.regex.Pattern;
 
 public class Customer {
@@ -5,6 +7,8 @@ public class Customer {
     //Changed from return type of String to void because it does not return anything
     public void inputCustomerName(String customerName) throws Exception {
 
+        //stringutils
+        StringUtils.isBlank(customerName);
         if (customerName == null || customerName.trim().equals("")) {
             throw new Exception("Empty input");
         }
@@ -14,10 +18,10 @@ public class Customer {
                 throw new Exception("Incorrect type of input");
             }
         }
-
     }
 
-    public boolean patternMatches(String emailAddress, String regexPattern) throws Exception {
+    public boolean validateEmail(String emailAddress) throws Exception {
+        String regexPattern = "^(.+)@(\\S+)$";
 
         if (!emailAddress.matches(regexPattern)) {
             throw new Exception("Invalid email");
@@ -26,6 +30,4 @@ public class Customer {
                 .matcher(emailAddress)
                 .matches();
     }
-
-
 }

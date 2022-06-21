@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -16,7 +15,6 @@ public class Brand {
     public void setBrandName(String brandName) {
         this.brandName = brandName;
     }
-
 
     //Brand variable
     public String getBrandName() {

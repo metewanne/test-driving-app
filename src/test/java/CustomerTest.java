@@ -1,34 +1,44 @@
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.ValueSource;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CustomerTest {
 
     Customer customer = new Customer();
 
-    //test that it's not null
-    //test that it's not empty
-    //test that it's not an int
-    //test that the correct input is given
     @Test
-    public void testEmptyInput() {
-        assertThrows(Exception.class, () -> customer.inputCustomerName(""));
+    public void inputCustomerName_succeed_whenValidInput() {
+        assertDoesNotThrow(() -> customer.inputCustomerName("asdf"));
     }
 
+//    @Test
+//    public void testInputIsSpecialChar() {
+//        assertThrows(Exception.class, () -> customer.inputCustomerName("asdf@!£$"));
+//    }
 
-    @Test
-    public void testInputIsInt() {
-        assertThrows(Exception.class, () -> customer.inputCustomerName("123"));
+    @ParameterizedTest(name = "[{index} test for: {0} expecting exception: {1}]")
+    @CsvSource({"' ', 'Empty input'", "'', 'Empty input'", "'123', 'Incorrect type of input'"})
+    public void inputCustomerName_throwsException_whenInputInvalid(String customerName, String exceptionMessage) {
+        Exception exception = assertThrows(Exception.class, () -> customer.inputCustomerName(customerName));
+
+        assertEquals(exceptionMessage, exception.getMessage());
     }
 
     @Test
-    public void testUsingSimpleRegex() throws Exception {
+    public void validateEmail_succeeds_whenValidEmail() throws Exception {
         String emailAddress = "username@domain.com";
-        String regexPattern = "^(.+)@(\\S+)$";
-        assertTrue(customer.patternMatches(emailAddress, regexPattern));
+        assertTrue(customer.validateEmail(emailAddress));
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = { "", "  ", "asdf@", "@asdf", "asdf@."})
+    public void validateEmail_throwsException_whenInvalidEmail(String email) {
+        Exception exception = assertThrows(Exception.class, () -> customer.validateEmail(email));
 
-
-
+        assertEquals("Invalid email", exception.getMessage());
+    }
 }

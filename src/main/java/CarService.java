@@ -4,7 +4,8 @@ import static java.util.stream.Collectors.toList;
 
 public class CarService {
 
-    private Map<Brand, List<CarModel>> brandMap = Map.of(new Brand(BrandTypes.BMW.toString()), List.of(new CarModel("X5", 5000, 28000, 2019), new CarModel("X6", 1000, 20000, 2020)),
+    //access modifiers, name not THAT clear
+    private static final Map<Brand, List<CarModel>> brandMap = Map.of(new Brand(BrandTypes.BMW.toString()), List.of(new CarModel("X5", 5000, 28000, 2019), new CarModel("X6", 1000, 20000, 2020)),
             new Brand(BrandTypes.TESLA.toString()), List.of(new CarModel("S", 2000, 50000, 2020), new CarModel("X", 100, 40000, 2021), new CarModel("3", 45000, 55000, 2022)),
             new Brand(BrandTypes.MERCEDES.toString()), List.of(new CarModel("A-Class", 500, 30000, 2010), new CarModel(("E-Class"), 14000, 15000, 2016)),
             new Brand(BrandTypes.AUDI.toString()), List.of(new CarModel("A3", 1000, 65000, 2005), new CarModel("Q5", 5000, 40500, 2011), new CarModel("R8", 3000, 48000, 2015)),
@@ -15,7 +16,7 @@ public class CarService {
         return brandMap;
     }
 
-    public String brandMatch(Brand brandInput, Scanner scanner) throws Exception {
+    public String brandMatch(Brand brandInput, Scanner scanner) {
 
         List<String> lowerCaseBrands = new ArrayList<>();
         for (Brand key : brandMap.keySet()) {
@@ -98,7 +99,8 @@ public class CarService {
         return listOfModels;
     }
 
-    public List<String> printListOfBrands(){
+    //access modifier
+    protected List<String> printListOfBrands() {
         List<String> listOfBrands = new ArrayList<>();
         for (Brand key : brandMap.keySet()) {
             String nameOfBrand;
@@ -113,13 +115,14 @@ public class CarService {
         return listOfBrands;
     }
 
-    public void chooseToSortBrands(String userChoice){
-        if (userChoice.equals("yes")||userChoice.equals("y")) {
+    //access modifier
+    private void chooseToSortBrands(String userChoice) {
+        if (userChoice.equals("yes") || userChoice.equals("y")) {
             System.out.println("Please select a brand:");
             List<String> listOfBrands = printListOfBrands();
             Collections.sort(listOfBrands);
             Brand.printBrands(listOfBrands);
-        } else if (userChoice.equals("no")||userChoice.equals("n")) {
+        } else if (userChoice.equals("no") || userChoice.equals("n")) {
             System.out.println("Please select a brand:");
             Brand.printBrands(printListOfBrands());
         }
@@ -150,8 +153,8 @@ public class CarService {
     }
 
     //Confirms the customers car booking
-    public void confirmBooking (String confirmationChoice) {
-        if (confirmationChoice.equals("yes")||confirmationChoice.equals("y")) {
+    public void confirmBooking(String confirmationChoice) {
+        if (confirmationChoice.equals("yes") || confirmationChoice.equals("y")) {
             System.out.println("Booking confirmed");
         }
     }
