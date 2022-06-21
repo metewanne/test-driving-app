@@ -1,3 +1,6 @@
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Application {
@@ -7,7 +10,7 @@ public class Application {
         CarService carService = new CarService();
         Customer customer = new Customer();
 
-        //name mention
+        System.out.println(carService.getBrandMap());
         Scanner customerInput = new Scanner(System.in);
         System.out.println("Enter first name");
         String firstName = customerInput.next();
@@ -19,19 +22,22 @@ public class Application {
 
         System.out.println("Enter email address");
         String email = customerInput.next();
-        customer.patternMatches(email, "^(.+)@(\\S+)$");
+        customer.validateEmail(email);
 
-        String customerChoice;
-        CarModel selectedCar;
-        do {
-            selectedCar = carService.selectCarBooking(customerInput);
-            System.out.println("\n" + "Do you want to confirm booking for " + selectedCar.getBrand() + " " + carService.checkCarModel(selectedCar.getBrand(), selectedCar.getCarModel()) + "?");
-            customerChoice = customerInput.next();
-        } while (customerChoice.equals("no") || customerChoice.equals("n"));
+        CarModel selectedCar = carService.selectCarBooking(customerInput);
+        String choice = carService.confirmationOfCarModel(customerInput, selectedCar);
+        carService.confirmBooking(choice);
+        /*
+        String choice1 = customerInput.next();
+        CarModel selectedCar = (CarModel) carService.getBrandMap().get(choice1);
+        System.out.println(selectedCar);
+        String choice = carService.confirmationOfCarModel(customerInput, selectedCar);
+        carService.confirmBooking(choice);
+        */
 
-        carService.confirmBooking(customerChoice);
-
-
+        System.out.println(selectedCar);
+        System.out.println(carService.removeCarModelFromList(selectedCar));
+        System.out.println(carService.addToBookingList(selectedCar));
 
     }
 

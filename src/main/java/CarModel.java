@@ -1,10 +1,13 @@
+import java.util.Objects;
+
 public class CarModel {
 
     private String carModelName;
     private int mileage;
     private double price;
     private int year;
-    private String brand;
+    private String brandName;
+    private Brand brand;
 
 
     public CarModel() {
@@ -54,16 +57,28 @@ public class CarModel {
         return year;
     }
 
-    public String getBrand() {
+    public Brand getBrand() {
         return brand;
     }
 
-    public void setBrand(String brand) {
+    public String getBrandName() {
+        return brandName;
+    }
+
+    public void setBrand(Brand brand) {
         this.brand = brand;
     }
 
-    public void setYear(int year) {
-        this.year = year;
+    public void setBrandName(String brandName) {
+        this.brandName = brandName;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CarModel carModel = (CarModel) o;
+        return Objects.equals(carModelName, carModel.carModelName);
     }
 
     @Override
