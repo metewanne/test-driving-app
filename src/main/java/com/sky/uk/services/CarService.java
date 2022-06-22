@@ -1,3 +1,8 @@
+package com.sky.uk.services;
+
+import com.sky.uk.model.Brand;
+import com.sky.uk.model.CarModel;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -213,7 +218,7 @@ public class CarService {
         return bookingList;
     }
 //
-//    public CarModel filterCarModel(String brandMatchOutput, String carModel) throws Exception {
+//    public com.sky.uk.model.CarModel filterCarModel(String brandMatchOutput, String carModel) throws Exception {
 //        return showCarModels(brandMatchOutput).stream()
 //                .filter(currentCarModel -> currentCarModel.getCarModelName().equals(carModel)).findFirst().orElseThrow(Exception::new);
 //    }

@@ -1,3 +1,5 @@
+package com.sky.uk.controller;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,7 +31,7 @@ public class Application {
         carService.confirmBooking(choice);
         /*
         String choice1 = customerInput.next();
-        CarModel selectedCar = (CarModel) carService.getBrandMap().get(choice1);
+        com.sky.uk.model.CarModel selectedCar = (com.sky.uk.model.CarModel) carService.getBrandMap().get(choice1);
         System.out.println(selectedCar);
         String choice = carService.confirmationOfCarModel(customerInput, selectedCar);
         carService.confirmBooking(choice);

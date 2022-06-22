@@ -1,3 +1,7 @@
+import com.sky.uk.model.Brand;
+import com.sky.uk.model.CarModel;
+import com.sky.uk.model.Customer;
+import com.sky.uk.services.CarService;
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -46,14 +50,14 @@ public class CarServiceTest {
     public void setUpClasses(){
         customer = new Customer();
         carService = new CarService();
-//        brand = new Brand("abc");
+//        brand = new com.sky.uk.model.Brand("abc");
 
     }
 
     @Test
     public void testClassExists() {
         try {
-            Class.forName("CarModel");
+            Class.forName("com.sky.uk.model.CarModel");
         } catch (ClassNotFoundException e) {
             Assert.fail("Should have class called Car");
         }
@@ -158,7 +162,7 @@ public class CarServiceTest {
     // test that checks that a car is removed from list
 //    @Test
 //    public void testThatCarIsRemovedFromAvailabilityList() throws Exception {
-//        List<CarModel> listWithoutSelectedCar = carService.removeCarModelFromAvailabilityList("bmw", "x5");
+//        List<com.sky.uk.model.CarModel> listWithoutSelectedCar = carService.removeCarModelFromAvailabilityList("bmw", "x5");
 //        fail();
 //    }
 

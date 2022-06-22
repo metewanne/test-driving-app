@@ -1,3 +1,5 @@
+package com.sky.uk.model;
+
 import java.util.Objects;
 
 public class CarModel {
