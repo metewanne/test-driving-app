@@ -5,9 +5,6 @@ import com.sky.uk.model.Customer;
 import com.sky.uk.services.BrandService;
 import com.sky.uk.services.CarService;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
 public class Application {
@@ -45,6 +42,8 @@ public class Application {
         System.out.println(selectedCar);
         System.out.println(carService.removeCarModelFromList(selectedCar));
         System.out.println(carService.addToBookingList(selectedCar));
+
+        customerInput.close();
 
     }
 

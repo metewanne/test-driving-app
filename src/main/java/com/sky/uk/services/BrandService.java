@@ -9,7 +9,7 @@ import static java.util.stream.Collectors.toList;
 
 public class BrandService {
 
-    CarService carService;
+
 
     private final Map<Brand, List<CarModel>> brandMap = new HashMap<>(Map.of(new Brand(BrandTypes.BMW.toString()), List.of(new CarModel("X5", 5000, 28000, 2019), new CarModel("X6", 1000, 20000, 2020)),
             new Brand(BrandTypes.TESLA.toString()), List.of(new CarModel("S", 2000, 50000, 2020), new CarModel("X", 100, 40000, 2021), new CarModel("3", 45000, 55000, 2022)),
@@ -18,19 +18,25 @@ public class BrandService {
             new Brand(BrandTypes.FERRARI.toString()), List.of(new CarModel("488", 100, 90000, 2003), new CarModel("F8", 10000, 80000, 2012)),
             new Brand(BrandTypes.PORSCHE.toString()), List.of(new CarModel("911", 400, 100000, 2000), new CarModel("Panamera", 500, 95000, 2015), new CarModel("Cayenne", 2000, 75000, 2002))));
 
-    public Map<Brand, List<CarModel>> getBrandsAndModelsMap() {
+
+
+//    public static Map<Brand, List<CarModel>> getBrandsAndModelsMap() {
+//        return brandMap;
+//    }
+
+    public Map<Brand, List<CarModel>> getBrandMap() {
         return brandMap;
     }
 
     public String brandMatch(Brand brandInput, Scanner scanner) throws Exception {
 
         List<String> lowerCaseBrands = new ArrayList<>();
-        for (Brand key : getBrandsAndModelsMap().keySet()) {
+        for (Brand key : getBrandMap().keySet()) {
             lowerCaseBrands.add(key.getBrandName().toLowerCase());
         }
         while (!lowerCaseBrands.contains(brandInput.getBrandName().toLowerCase())) {
             System.out.println("Here is a list of all available cars:" + "\n");
-            getBrandsAndModelsMap().forEach((key, value) -> System.out.println(key.getBrandName() + " : " + value.stream()
+            getBrandMap().forEach((key, value) -> System.out.println(key.getBrandName() + " : " + value.stream()
                     .map(CarModel::getCarModelName).collect(toList())));
 
             System.out.println();
@@ -48,7 +54,7 @@ public class BrandService {
 
         Brand brandOutput = new Brand();
         brandOutput.setBrandName(brandMatchOutput);
-        List<CarModel> listOfModels = getBrandsAndModelsMap().get(brandOutput);
+        List<CarModel> listOfModels = getBrandMap().get(brandOutput);
         if (listOfModels == null || listOfModels.isEmpty()) {
             throw new Exception("no car model available");
         } else {
@@ -111,7 +117,7 @@ public class BrandService {
 
     public List<String> printListOfBrands() {
         List<String> listOfBrands = new ArrayList<>();
-        for (Brand key : getBrandsAndModelsMap().keySet()) {
+        for (Brand key : getBrandMap().keySet()) {
             String nameOfBrand;
             if (key.getBrandName().equals("bmw")) {
                 nameOfBrand = key.getBrandName().toUpperCase();
@@ -144,6 +150,38 @@ public class BrandService {
         }
     }
 
+    public List<CarModel> sortCars(String sortChoice, String brandName) throws Exception {
+
+        List<CarModel> listOfModels = showCarModels(brandName);
+        switch (sortChoice) {
+            case "mileage":
+                List<CarModel> sortedCarModel = listOfModels.stream()
+                        .sorted(Comparator.comparingInt(CarModel::getMileage))
+                        .collect(toList());
+                sortedCarModel.forEach(System.out::println);
+                return sortedCarModel;
+            case "price":
+                List<CarModel> sortedPrice = listOfModels.stream()
+                        .sorted(Comparator.comparingDouble(CarModel::getPrice))
+                        .collect(toList());
+                sortedPrice.forEach(System.out::println);
+                return sortedPrice;
+            case "year":
+                List<CarModel> sortedYear = listOfModels.stream()
+                        .sorted(Comparator.comparingInt(CarModel::getYear)
+                                .reversed())
+                        .collect(toList());
+                sortedYear.forEach(System.out::println);
+                return sortedYear;
+            default:
+                for (CarModel model : showCarModels(brandName)) {
+                    System.out.println(model.toString());
+                }
+                break;
+        }
+        return listOfModels;
+    }
+
 //    Allows the user to select the car brand and model
     public CarModel selectCarBooking(Scanner customerInput) throws Exception {
 
@@ -159,13 +197,13 @@ public class BrandService {
         System.out.println("\n" + "Do you want to sort the cars by mileage or price or year?");
         String sortChoice = customerInput.next().toLowerCase();
         System.out.println("Please select a car model:");
-        carService.sortCars(sortChoice, brandName);
+        sortCars(sortChoice, brandName);
         String modelChoice = customerInput.next();
         CarModel model = new CarModel();
         model.setCarModelName(modelChoice);
         model.setBrandName(brandName);
         model.setBrand(chosenBrand);
-        List<CarModel> modelsOfSelectedBrand = getBrandsAndModelsMap().get(model.getBrand());
+        List<CarModel> modelsOfSelectedBrand = getBrandMap().get(model.getBrand());
         Optional<CarModel> selectedModel = modelsOfSelectedBrand.stream().filter(carModel -> carModel.getCarModelName().equalsIgnoreCase(model.getCarModelName())).findFirst();
         System.out.println(selectedModel.isPresent());
 

@@ -3,7 +3,6 @@ package com.sky.uk.services;
 import com.sky.uk.model.Brand;
 import com.sky.uk.model.CarModel;
 import com.sky.uk.model.Customer;
-import com.sky.uk.services.CarService;
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -2,16 +2,28 @@ package com.sky.uk.services;
 
 import com.sky.uk.model.Brand;
 import com.sky.uk.model.CarModel;
+import com.sky.uk.services.BrandService;
 
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 
 public class CarService {
 
-    BrandService brandService;
+    BrandService brandService = new BrandService();
+
+    Map <Brand, List<CarModel>> brandsAndCarModels = brandService.getBrandMap();
+
+//    public CarService(BrandService brandService) {
+//        this.brandService = brandService;
+//    }
+//
+//    public CarService() {
+//    }
+
+
+
 
 
 //    public String brandMatch(Brand brandInput, Scanner scanner) throws Exception {
@@ -69,37 +81,7 @@ public class CarService {
 //        return existingModel;
 //    }
 
-    public List<CarModel> sortCars(String sortChoice, String brandName) throws Exception {
 
-        List<CarModel> listOfModels = brandService.showCarModels(brandName);
-        switch (sortChoice) {
-            case "mileage":
-                List<CarModel> sortedCarModel = listOfModels.stream()
-                        .sorted(Comparator.comparingInt(CarModel::getMileage))
-                        .collect(toList());
-                sortedCarModel.forEach(System.out::println);
-                return sortedCarModel;
-            case "price":
-                List<CarModel> sortedPrice = listOfModels.stream()
-                        .sorted(Comparator.comparingDouble(CarModel::getPrice))
-                        .collect(toList());
-                sortedPrice.forEach(System.out::println);
-                return sortedPrice;
-            case "year":
-                List<CarModel> sortedYear = listOfModels.stream()
-                        .sorted(Comparator.comparingInt(CarModel::getYear)
-                                .reversed())
-                        .collect(toList());
-                sortedYear.forEach(System.out::println);
-                return sortedYear;
-            default:
-                for (CarModel model : brandService.showCarModels(brandName)) {
-                    System.out.println(model.toString());
-                }
-                break;
-        }
-        return listOfModels;
-    }
 
 //    public List<String> printListOfBrands() {
 //        List<String> listOfBrands = new ArrayList<>();
@@ -169,7 +151,7 @@ public class CarService {
         boolean selectCarAgain = true;
         while (selectCarAgain) {
             selectedCar = brandService.selectCarBooking(customerInput);
-            System.out.println("\n" + "Do you want to confirm booking for " + selectedCar.getBrand() + " " +
+            System.out.println("\n" + "Do you want to confirm booking for " + selectedCar.getBrand().getBrandName() + " " +
                     brandService.checkCarModel(selectedCar.getBrandName(), selectedCar.getCarModel()) + "?");
             customerChoice = customerInput.next();
 
@@ -193,15 +175,15 @@ public class CarService {
     }
 
     public Map<Brand, List<CarModel>> removeCarModelFromList(CarModel selectedCar) {
-        for (var entry : brandService.getBrandsAndModelsMap().entrySet()) {
+        for (var entry : brandsAndCarModels.entrySet()) {
             if (entry.getKey().getBrandName().equals(selectedCar.getBrand())) {
-                List<CarModel> carModelList = brandService.getBrandsAndModelsMap().get(entry.getKey());
+                List<CarModel> carModelList = brandsAndCarModels.get(entry.getKey());
                 carModelList = carModelList.stream().filter(x -> !x.getCarModelName().equalsIgnoreCase(selectedCar.getCarModelName()))
                         .collect(toList());
-                brandService.getBrandsAndModelsMap().put(entry.getKey(), carModelList);
+                brandsAndCarModels.put(entry.getKey(), carModelList);
             }
         }
-        return brandService.getBrandsAndModelsMap();
+        return brandsAndCarModels;
     }
 
     public List<CarModel> addToBookingList(CarModel selectedCar) {
