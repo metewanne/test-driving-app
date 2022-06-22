@@ -1,3 +1,5 @@
+package com.sky.uk.services;
+
 import com.sky.uk.model.Brand;
 import com.sky.uk.model.CarModel;
 import com.sky.uk.model.Customer;
@@ -21,7 +23,9 @@ public class CarServiceTest {
 
     Customer customer;
     CarService carService;
+    BrandService brandService;
     Scanner customerInput = new Scanner(System.in);
+
 
     @Mock
     Brand brand;
@@ -65,13 +69,13 @@ public class CarServiceTest {
 
     @Test
     public void testEmptyList() throws Exception {
-        assertThat(carService.getBrandMap().size()).isGreaterThan(0);
+        assertThat(brandService.getBrandsAndModelsMap().size()).isGreaterThan(0);
     }
 
     @Test
     public void correctBrandMatchInput() throws Exception {
         when(brand.getBrandName()).thenReturn("audi");
-        String returnValue = carService.brandMatch(brand, null);
+        String returnValue = brandService.brandMatch(brand, null);
         assertEquals("audi", returnValue);
     }
 
@@ -79,7 +83,7 @@ public class CarServiceTest {
     public void incorrectBrandMatchInput() throws Exception {
         when(brand.getBrandName()).thenReturn("invalid brand").thenReturn("audi");
         Scanner scanner = new Scanner("audi");
-        String returnValue = carService.brandMatch(brand, scanner);
+        String returnValue = brandService.brandMatch(brand, scanner);
         assertEquals("audi", returnValue);
         verify(brand, times(1)).setBrandName("audi");
     }
@@ -88,13 +92,13 @@ public class CarServiceTest {
     @Test
     public void testCarModelListIsEmpty() throws Exception {
         Map<Brand, List<CarModel>> brandMap = Map.of(new Brand("bmw"), List.of(new CarModel("X5"), new CarModel("X6")), new Brand("tesla"), List.of(new CarModel("S"), new CarModel("3")));
-        assertThat(carService.showCarModels("bmw")).size().isGreaterThan(0);
+        assertThat(brandService.showCarModels("bmw")).size().isGreaterThan(0);
 
     }
 
     @Test
     public void testChosenModelIsInModelList() throws Exception {
-        List<CarModel> listOfModels = carService.showCarModels("bmw");
+        List<CarModel> listOfModels = brandService.showCarModels("bmw");
         assertEquals(2, listOfModels.size());
         assertEquals("X5", listOfModels.get(0).getCarModel());
         assertEquals("X6", listOfModels.get(1).getCarModel());
@@ -103,13 +107,13 @@ public class CarServiceTest {
 
     @Test
     public void testChosenModelIsValid() throws Exception {
-        assertThrows(Exception.class, () -> carService.showCarModels("ew"));
+        assertThrows(Exception.class, () -> brandService.showCarModels("ew"));
     }
 
     @Test
     public void testSortBrandsAlphabetically() throws Exception {
 
-        List<String> listOfBrands = carService.printListOfBrands();
+        List<String> listOfBrands = brandService.printListOfBrands();
         Collections.sort(listOfBrands);
 
         assertEquals(6, listOfBrands.size());

@@ -2,6 +2,7 @@ package com.sky.uk.controller;
 
 import com.sky.uk.model.CarModel;
 import com.sky.uk.model.Customer;
+import com.sky.uk.services.BrandService;
 import com.sky.uk.services.CarService;
 
 import java.util.HashMap;
@@ -15,8 +16,8 @@ public class Application {
 
         CarService carService = new CarService();
         Customer customer = new Customer();
+        BrandService brandService = new BrandService();
 
-        System.out.println(carService.getBrandMap());
         Scanner customerInput = new Scanner(System.in);
         System.out.println("Enter first name");
         String firstName = customerInput.next();
@@ -30,7 +31,7 @@ public class Application {
         String email = customerInput.next();
         customer.validateEmail(email);
 
-        CarModel selectedCar = carService.selectCarBooking(customerInput);
+        CarModel selectedCar = brandService.selectCarBooking(customerInput);
         String choice = carService.confirmationOfCarModel(customerInput, selectedCar);
         carService.confirmBooking(choice);
         /*

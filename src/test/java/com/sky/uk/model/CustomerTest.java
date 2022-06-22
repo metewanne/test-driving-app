@@ -1,3 +1,5 @@
+package com.sky.uk.model;
+
 import com.sky.uk.model.Customer;
 import org.junit.jupiter.api.Test;
 
