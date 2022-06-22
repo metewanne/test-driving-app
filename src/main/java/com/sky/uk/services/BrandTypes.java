@@ -1,3 +1,4 @@
+package com.sky.uk.services;
 
 public enum BrandTypes {
     BMW("bmw"),
@@ -19,6 +20,6 @@ public enum BrandTypes {
     }
 }
 
-//EnumMap<BrandTypes, String> carBrands
+//EnumMap<com.sky.uk.services.BrandTypes, String> carBrands
 
 
