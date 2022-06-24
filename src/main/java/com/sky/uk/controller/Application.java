@@ -31,16 +31,16 @@ public class Application {
         String email = customerInput.next();
         customer.validateEmail(email);
 
-        CarModel selectedCar = brandService.selectCarBooking(customerInput);
+        com.sky.uk.model.CarModel selectedCar = brandService.selectCarBooking(customerInput);
         String choice = carService.confirmationOfCarModel(customerInput, selectedCar);
         carService.confirmBooking(choice);
-        /*
-        String choice1 = customerInput.next();
-        com.sky.uk.model.CarModel selectedCar = (com.sky.uk.model.CarModel) carService.getBrandMap().get(choice1);
-        System.out.println(selectedCar);
-        String choice = carService.confirmationOfCarModel(customerInput, selectedCar);
-        carService.confirmBooking(choice);
-        */
+
+//        String choice1 = customerInput.nextLine();
+//        com.sky.uk.model.CarModel selectedCar = (com.sky.uk.model.CarModel) brandService.getBrandsAndModelsMap().get(choice1);
+//        System.out.println(selectedCar);
+//        String choice = carService.confirmationOfCarModel(customerInput, selectedCar);
+//        carService.confirmBooking(choice);
+
 
         System.out.println(selectedCar);
         System.out.println(carService.removeCarModelFromList(selectedCar));
