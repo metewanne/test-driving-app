@@ -1,3 +1,5 @@
+package com.sky.uk.model;
+
 import java.util.Scanner;
 import java.util.regex.Pattern;
 

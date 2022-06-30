@@ -11,7 +11,7 @@ There's a need for a new dealership booking app. The idea is to have a console i
 Now, we've got a car booking app but we'd like to expand the functionality presented to the user; we'd like to include an advanced options section that lets the user filter the cars they can see in the following order:
 * 		Year (Newest to oldest)
 * 		Price (low to high)
-* 		Brand (alphabetical)
+* 		com.sky.uk.model.Brand (alphabetical)
 * 		Mileage (low to high)
  
 

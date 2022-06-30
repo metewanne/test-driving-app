@@ -1,4 +1,5 @@
-import java.util.ArrayList;
+package com.sky.uk.model;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -17,8 +18,6 @@ public class Brand {
         this.brandName = brandName;
     }
 
-
-    //Brand variable
     public String getBrandName() {
         return brandName;
     }
