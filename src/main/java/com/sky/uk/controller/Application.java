@@ -29,19 +29,12 @@ public class Application {
         customer.validateEmail(email);
 
         CarModel selectedCar = brandService.selectCarBooking(customerInput);
-        String choice = carService.confirmationOfCarModel(customerInput, selectedCar);
-        carService.confirmBooking(choice);
-        /*
-        String choice1 = customerInput.next();
-        com.sky.uk.model.CarModel selectedCar = (com.sky.uk.model.CarModel) carService.getBrandMap().get(choice1);
-        System.out.println(selectedCar);
-        String choice = carService.confirmationOfCarModel(customerInput, selectedCar);
-        carService.confirmBooking(choice);
-        */
+        String choice = carService.confirmationOfCarModelBooking(customerInput, selectedCar);
+        carService.confirmCarBooking(choice);
 
         System.out.println(selectedCar);
         System.out.println(carService.getRemovedCarModelFromList(selectedCar));
-        System.out.println(carService.addCarToBookingList(selectedCar));
+        System.out.println(carService.getConfirmedCarToBookingList(selectedCar));
 
         customerInput.close();
 

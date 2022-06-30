@@ -10,7 +10,6 @@ public enum BrandTypes {
 
     private String name;
 
-
     BrandTypes(String name) {
         this.name = name;
     }
@@ -19,7 +18,5 @@ public enum BrandTypes {
         return this.name;
     }
 }
-
-//EnumMap<com.sky.uk.services.BrandTypes, String> carBrands
 
 

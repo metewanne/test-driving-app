@@ -18,8 +18,6 @@ public class Brand {
         this.brandName = brandName;
     }
 
-
-    //com.sky.uk.model.Brand variable
     public String getBrandName() {
         return brandName;
     }
