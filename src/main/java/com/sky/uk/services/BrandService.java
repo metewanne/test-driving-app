@@ -8,21 +8,12 @@ import java.util.*;
 import static java.util.stream.Collectors.toList;
 
 public class BrandService {
-
-
-
     private final Map<Brand, List<CarModel>> brandMap = new HashMap<>(Map.of(new Brand(BrandTypes.BMW.toString()), List.of(new CarModel("X5", 5000, 28000, 2019), new CarModel("X6", 1000, 20000, 2020)),
             new Brand(BrandTypes.TESLA.toString()), List.of(new CarModel("S", 2000, 50000, 2020), new CarModel("X", 100, 40000, 2021), new CarModel("3", 45000, 55000, 2022)),
             new Brand(BrandTypes.MERCEDES.toString()), List.of(new CarModel("A-Class", 500, 30000, 2010), new CarModel(("E-Class"), 14000, 15000, 2016)),
             new Brand(BrandTypes.AUDI.toString()), List.of(new CarModel("A3", 1000, 65000, 2005), new CarModel("Q5", 5000, 40500, 2011), new CarModel("R8", 3000, 48000, 2015)),
             new Brand(BrandTypes.FERRARI.toString()), List.of(new CarModel("488", 100, 90000, 2003), new CarModel("F8", 10000, 80000, 2012)),
             new Brand(BrandTypes.PORSCHE.toString()), List.of(new CarModel("911", 400, 100000, 2000), new CarModel("Panamera", 500, 95000, 2015), new CarModel("Cayenne", 2000, 75000, 2002))));
-
-
-
-//    public static Map<Brand, List<CarModel>> getBrandsAndModelsMap() {
-//        return brandMap;
-//    }
 
     public Map<Brand, List<CarModel>> getBrandMap() {
         return brandMap;
@@ -43,14 +34,12 @@ public class BrandService {
             System.out.println("Car brand is not available - please select your new brand");
             String newBrandSelection = scanner.next();
             brandInput.setBrandName(newBrandSelection);
-
         }
-
         return brandInput.getBrandName().toLowerCase();
     }
 
     // method takes brand user input and matches it to key in brandMap to show list of car models
-    public List<CarModel> showCarModels(String brandMatchOutput) throws Exception {
+    protected List<CarModel> showCarModels(String brandMatchOutput) throws Exception {
 
         Brand brandOutput = new Brand();
         brandOutput.setBrandName(brandMatchOutput);
@@ -61,7 +50,6 @@ public class BrandService {
             return listOfModels;
         }
     }
-
     // checks if chosen car model is in list of car models
     public CarModel checkCarModel(String chosenBrand, String chosenModel) throws Exception {
 
@@ -82,38 +70,6 @@ public class BrandService {
 
         return existingModel;
     }
-
-//    public List<CarModel> sortCars(String sortChoice, String brandName) throws Exception {
-//
-//        List<CarModel> listOfModels = showCarModels(brandName);
-//        switch (sortChoice) {
-//            case "mileage":
-//                List<CarModel> sortedCarModel = listOfModels.stream()
-//                        .sorted(Comparator.comparingInt(CarModel::getMileage))
-//                        .collect(toList());
-//                sortedCarModel.forEach(System.out::println);
-//                return sortedCarModel;
-//            case "price":
-//                List<CarModel> sortedPrice = listOfModels.stream()
-//                        .sorted(Comparator.comparingDouble(CarModel::getPrice))
-//                        .collect(toList());
-//                sortedPrice.forEach(System.out::println);
-//                return sortedPrice;
-//            case "year":
-//                List<CarModel> sortedYear = listOfModels.stream()
-//                        .sorted(Comparator.comparingInt(CarModel::getYear)
-//                                .reversed())
-//                        .collect(toList());
-//                sortedYear.forEach(System.out::println);
-//                return sortedYear;
-//            default:
-//                for (CarModel model : showCarModels(brandName)) {
-//                    System.out.println(model.toString());
-//                }
-//                break;
-//        }
-//        return listOfModels;
-//    }
 
     public List<String> printListOfBrands() {
         List<String> listOfBrands = new ArrayList<>();
@@ -209,57 +165,6 @@ public class BrandService {
 
         return model;
     }
-
-//    public String confirmationOfCarModel(Scanner customerInput, CarModel selectedCar) throws Exception {
-//        String customerChoice = "";
-//        boolean selectCarAgain = true;
-//        while(selectCarAgain) {
-//            selectedCar = selectCarBooking(customerInput);
-//            System.out.println("\n" + "Do you want to confirm booking for " + selectedCar.getBrand() + " " +
-//                    checkCarModel(selectedCar.getBrandName(), selectedCar.getCarModel()) + "?");
-//            customerChoice = customerInput.next();
-//
-//            switch(customerChoice){
-//                case "yes":
-//                case "y":
-//                    selectCarAgain = false;
-//                    break;
-//                default:
-//                    break;
-//            }
-//        }
-//        return customerChoice;
-//    }
-//
-//    //Confirms the customers car booking
-//    public void confirmBooking(String confirmationChoice) {
-//        if (confirmationChoice.equals("yes") || confirmationChoice.equals("y")) {
-//            System.out.println("Booking confirmed");
-//        }
-//    }
-//
-//    public Map<Brand, List<CarModel>> removeCarModelFromList(CarModel selectedCar) {
-//        for (var entry : brandService.brandMap.entrySet()) {
-//            if(entry.getKey().getBrandName().equals(selectedCar.getBrand())){
-//                List<CarModel> carModelList = brandService.brandMap.get(entry.getKey());
-//                carModelList = carModelList.stream().filter(x -> !x.getCarModelName().equalsIgnoreCase(selectedCar.getCarModelName()))
-//                        .collect(toList());
-//                brandService.brandMap.put(entry.getKey(), carModelList);
-//            }
-//        }
-//        return brandService.brandMap;
-//    }
-//
-//    public List<CarModel> addToBookingList(CarModel selectedCar){
-//        List<CarModel> bookingList = new ArrayList<>();
-//        bookingList.add(selectedCar);
-//        return bookingList;
-//    }
-//
-//    public com.sky.uk.model.CarModel filterCarModel(String brandMatchOutput, String carModel) throws Exception {
-//        return showCarModels(brandMatchOutput).stream()
-//                .filter(currentCarModel -> currentCarModel.getCarModelName().equals(carModel)).findFirst().orElseThrow(Exception::new);
-//    }
 }
 
 

@@ -40,8 +40,8 @@ public class Application {
         */
 
         System.out.println(selectedCar);
-        System.out.println(carService.removeCarModelFromList(selectedCar));
-        System.out.println(carService.addToBookingList(selectedCar));
+        System.out.println(carService.getRemovedCarModelFromList(selectedCar));
+        System.out.println(carService.addCarToBookingList(selectedCar));
 
         customerInput.close();
 
