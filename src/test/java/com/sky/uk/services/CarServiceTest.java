@@ -34,10 +34,7 @@ public class CarServiceTest {
         }
     }
 
-    @Test
-    public void testEmptyList() throws Exception {
-        assertThat(carService.brandsAndCarModels.size()).isGreaterThan(0);
-    }
+
 
     // test that checks that a car is removed from list
 //    @Test

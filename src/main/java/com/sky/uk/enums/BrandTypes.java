@@ -1,4 +1,4 @@
-package com.sky.uk.services;
+package com.sky.uk.enums;
 
 public enum BrandTypes {
     BMW("bmw"),

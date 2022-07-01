@@ -11,7 +11,7 @@ public class CarService {
 
     BrandService brandService = new BrandService();
 
-    Map <Brand, List<CarModel>> listOfCars = brandService.getListOfCars();
+    Map <Brand, List<CarModel>> listOfCars = brandService.getMapOfCars();
 
     public String confirmationOfCarModelBooking(Scanner customerInput, CarModel selectedCar) throws Exception {
         String customerChoice = "";
@@ -42,7 +42,7 @@ public class CarService {
     }
 
     //Is this necessary to make private as nothing in the method can be amended?
-    private Map<Brand, List<CarModel>> removeCarModelFromList(CarModel selectedCar) {
+    public Map<Brand, List<CarModel>> removeCarModelFromList(CarModel selectedCar) {
         for (var entry : listOfCars.entrySet()) {
             if (entry.getKey().getBrandName().equals(selectedCar.getBrand())) {
                 List<CarModel> carModelList = listOfCars.get(entry.getKey());
@@ -53,19 +53,19 @@ public class CarService {
         }
         return listOfCars;
     }
-    public Map<Brand, List<CarModel>> getRemovedCarModelFromList(CarModel selectedCar) {
-        return removeCarModelFromList(selectedCar);
-    }
+//    public Map<Brand, List<CarModel>> getRemovedCarModelFromList(CarModel selectedCar) {
+//        return removeCarModelFromList(selectedCar);
+//    }
 
     //Is this necessary to make private as nothing in the method can be amended?
-    private List<CarModel> addToConfirmedBookingList(CarModel selectedCar) {
+    public List<CarModel> addToConfirmedBookingList(CarModel selectedCar) {
         List<CarModel> bookingList = new ArrayList<>();
         bookingList.add(selectedCar);
         return bookingList;
     }
-    public List<CarModel> getConfirmedCarToBookingList(CarModel selectedCar) {
-        return addToConfirmedBookingList(selectedCar);
-    }
+//    public List<CarModel> getConfirmedCarToBookingList(CarModel selectedCar) {
+//        return addToConfirmedBookingList(selectedCar);
+//    }
 
 }
 

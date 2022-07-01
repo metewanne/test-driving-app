@@ -33,8 +33,8 @@ public class Application {
         carService.confirmCarBooking(choice);
 
         System.out.println(selectedCar);
-        System.out.println(carService.getRemovedCarModelFromList(selectedCar));
-        System.out.println(carService.getConfirmedCarToBookingList(selectedCar));
+        System.out.println(carService.removeCarModelFromList(selectedCar));
+        System.out.println(carService.addToConfirmedBookingList(selectedCar));
 
         customerInput.close();
 
