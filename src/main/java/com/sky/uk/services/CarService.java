@@ -42,7 +42,7 @@ public class CarService {
     }
 
     //Is this necessary to make private as nothing in the method can be amended?
-    public Map<Brand, List<CarModel>> removeCarModelFromList(CarModel selectedCar) {
+    public Map<Brand, List<CarModel>> removeCarModelFromMap(CarModel selectedCar) {
         for (var entry : listOfCars.entrySet()) {
             if (entry.getKey().getBrandName().equals(selectedCar.getBrand())) {
                 List<CarModel> carModelList = listOfCars.get(entry.getKey());
