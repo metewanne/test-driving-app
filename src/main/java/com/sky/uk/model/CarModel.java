@@ -55,6 +55,10 @@ public class CarModel {
         return price;
     }
 
+    public void setYear(int year) {
+        this.year = year;
+    }
+
     public int getYear() {
         return year;
     }

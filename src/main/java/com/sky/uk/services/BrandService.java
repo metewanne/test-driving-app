@@ -162,7 +162,11 @@ public class BrandService {
         model.setBrand(chosenBrand);
         List<CarModel> modelsOfSelectedBrand = mapOfCars.get(model.getBrand());
         Optional<CarModel> selectedModel = modelsOfSelectedBrand.stream().filter(carModel -> carModel.getCarModelName().equalsIgnoreCase(model.getCarModelName())).findFirst();
-        System.out.println(selectedModel.isPresent());
+
+        model.setCarModelName(selectedModel.get().getCarModelName());
+        model.setMileage(selectedModel.get().getMileage());
+        model.setPrice(selectedModel.get().getPrice());
+        model.setYear(selectedModel.get().getYear());
 
         return model;
     }
