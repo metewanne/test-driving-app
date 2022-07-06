@@ -11,7 +11,7 @@ public class CarService {
 
     BrandService brandService = new BrandService();
 
-    Map <Brand, List<CarModel>> listOfCars = brandService.getMapOfCars();
+    Map <Brand, List<CarModel>> listOfCars = brandService.getAvailableCars();
 
     public String confirmationOfCarModelBooking(Scanner customerInput, CarModel selectedCar) throws Exception {
         String customerChoice = "";

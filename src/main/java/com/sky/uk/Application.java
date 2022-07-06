@@ -1,11 +1,10 @@
-package com.sky.uk.controller;
+package com.sky.uk;
 
 import com.sky.uk.model.CarModel;
 import com.sky.uk.model.Customer;
 import com.sky.uk.services.BrandService;
 import com.sky.uk.services.CarService;
 
-import java.util.Optional;
 import java.util.Scanner;
 
 public class Application {

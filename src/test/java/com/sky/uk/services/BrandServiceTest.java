@@ -40,7 +40,7 @@ public class BrandServiceTest {
     //Moved this test from carServiceTest to brandServiceTest as its more appropriate
     @Test
     public void testEmptyList() throws Exception {
-        assertThat(brandService.getMapOfCars().size()).isGreaterThan(0);
+        assertThat(brandService.getAvailableCars().size()).isGreaterThan(0);
     }
 
     @Test
@@ -63,13 +63,13 @@ public class BrandServiceTest {
     @Test
     public void testCarModelListIsEmpty() throws Exception {
         Map<Brand, List<CarModel>> brandMap = Map.of(new Brand("bmw"), List.of(new CarModel("X5"), new CarModel("X6")), new Brand("tesla"), List.of(new CarModel("S"), new CarModel("3")));
-        assertThat(brandService.showCarModelsForSelectedBrand("bmw")).size().isGreaterThan(0);
+        assertThat(brandService.getCarModels("bmw")).size().isGreaterThan(0);
 
     }
 
     @Test
     public void testChosenModelIsInModelList() throws Exception {
-        List<CarModel> listOfModels = brandService.showCarModelsForSelectedBrand("bmw");
+        List<CarModel> listOfModels = brandService.getCarModels("bmw");
         assertEquals(2, listOfModels.size());
         assertEquals("X5", listOfModels.get(0).getCarModel());
         assertEquals("X6", listOfModels.get(1).getCarModel());
@@ -78,7 +78,7 @@ public class BrandServiceTest {
 
     @Test
     public void testChosenModelIsValid() throws Exception {
-        assertThrows(Exception.class, () -> brandService.showCarModelsForSelectedBrand("ew"));
+        assertThrows(Exception.class, () -> brandService.getCarModels("ew"));
     }
 
     @Test
